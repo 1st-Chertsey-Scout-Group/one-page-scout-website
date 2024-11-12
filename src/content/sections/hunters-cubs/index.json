@@ -1,9 +1,10 @@
 {
-    "name": "Hunters Cubs",
-    "type": "cubs",
+    "age": "8-10½",
     "image": "./Image.png",
     "meetingDay": "Monday",
-    "meetingStartTime": "19:00",
     "meetingEndTime": "20:30",
-    "order": 5
+    "meetingStartTime": "19:00",
+    "name": "Hunters Cubs",
+    "order": 5,
+    "type": "cubs"
 }

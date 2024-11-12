@@ -8,35 +8,13 @@ export default {
 			transparent: "var(--transparent)",
 			inherit: "inherit",
 			white: "var(--white)",
+			
 			background: "var(--background)",
 			foreground: "var(--foreground)",
+
 			alternative: {
 				DEFAULT: "var(--alternative)",
 				foreground: "var(--alternative-foreground)",
-				dark: {
-					DEFAULT: "var(--alternative-dark)",
-					foreground: "var(--alternative-dark-foreground)",
-				},
-			},
-
-			squirrels: {
-				DEFAULT: "var(--squirrels)",
-				foreground: "var(--squirrels-foreground)",
-			},
-
-			beavers: {
-				DEFAULT: "var(--beavers)",
-				foreground: "var(--beavers-foreground)",
-			},
-
-			cubs: {
-				DEFAULT: "var(--cubs)",
-				foreground: "var(--cubs-foreground)",
-			},
-
-			scouts: {
-				DEFAULT: "var(--scouts)",
-				foreground: "var(--scouts-foreground)",
 			},
 
 			primary: {
@@ -49,14 +27,6 @@ export default {
 				border: "var(--input-border)",
 				foreground: "var(--input-foreground)",
 			},
-
-			icon: {
-				facebook: "var(--icon-facebook)",
-				email: "var(--icon-email)",
-				website: "var(--icon-website)",
-				hover: "var(--icon-hover)"
-			}
-
 		},
 		extend: {
 			fontFamily: {

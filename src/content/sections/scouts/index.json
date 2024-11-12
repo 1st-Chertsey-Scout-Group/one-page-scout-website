@@ -1,9 +1,10 @@
 {
-    "name": "Scouts",
-    "type": "scouts",
+    "age": "10½-14",
     "image": "./Image.png",
     "meetingDay": "Thursday",
-    "meetingStartTime": "19:15",
     "meetingEndTime": "21:00",
-    "order": 6
+    "meetingStartTime": "19:15",
+    "name": "Scouts",
+    "order": 6,
+    "type": "scouts"
 }

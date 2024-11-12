@@ -8,8 +8,6 @@ interface PageProps {
 
 const { title, description }: PageProps =
   Astro.props.frontmatter || Astro.props;
-
-const currentPath = Astro.url.pathname;
 ---
 
 <BaseLayout title={title} description={description}>

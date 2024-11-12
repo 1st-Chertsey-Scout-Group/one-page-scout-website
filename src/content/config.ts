@@ -7,6 +7,7 @@ const sectionsCollection = defineCollection({
             name: z.string(),
             type: z.enum(["squirrels", "beavers", "cubs", "scouts"]),
             meetingDay: z.enum(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]),
+            age: z.string(),
             meetingStartTime: z.string(),
             meetingEndTime: z.string(),
             order: z.number(),

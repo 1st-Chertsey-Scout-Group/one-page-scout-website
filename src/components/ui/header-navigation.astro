@@ -1,20 +1,25 @@
 ---
 import { Image } from "astro:assets";
 
-import fleur from "@/images/fleur-de-lis.svg";
 import logo from "@/images/group-badge.png";
-import { SITE_TITLE } from "@/lib/consts";
+import { ADDRESS_TITLE, CONTACT_TITLE, HEADER_ALT_TEXT, SECTIONS_TITLE, GROUP_NAME } from "@/lib/consts";
 import type { NavigationLink } from "@/models/navigation-link";
-import Seperator from "./seperator.astro";
 
 const links: NavigationLink[] = [
     {
-        text: "Sections",
+        text: SECTIONS_TITLE,
         url: "#sections",
+        target: "_self"
     },
     {
-        text: "Contact",
+        text: ADDRESS_TITLE,
+        url: "#address",
+        target: "_self"
+    },
+    {
+        text: CONTACT_TITLE,
         url: "#contact",
+        target: "_self"
     },
 ];
 ---
@@ -23,19 +28,19 @@ const links: NavigationLink[] = [
     <Image
         loading={"eager"}
         src={logo}
-        alt={"Runnymede scouts logo"}
+        alt={HEADER_ALT_TEXT}
         quality={100}
-        width={92}
-        height={92}
+        width={128}
+        height={128}
         class="aspect-square"
     />
-    <h1 class="text-5xl text-center">{SITE_TITLE}</h1>
+    <h1 class="text-5xl text-center font-extrabold tracking-tight">{GROUP_NAME}</h1>
     <ul class="flex flex-wrap items-center justify-center gap-4 mx-2">
         {
             links &&
                 links.map((link) => (
                     <li>
-                        <a class="text-center hover:underline" href={link.url}>
+                        <a class="text-center hover:underline" href={link.url} target={link.target}>
                             {link.text}
                         </a>
                     </li>

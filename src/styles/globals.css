@@ -16,35 +16,16 @@
         --alternative: #f9fafb;
         --alternative-foreground: #111827;
 
-        --icon-facebook: #39569c;
-        --icon-email: #ea4c89;
-        --icon-website: #28b661;
-        --icon-hover: #111827;
-
-
-        --squirrels: #e22e12;
-        --squirrels-foreground: #ffffff;
-
-        --beavers: #006ddf;
-        --beavers-foreground: #ffffff;
-
-        --cubs: #23a950;
-        --cubs-foreground: #ffffff;
-
-        --scouts: #00a794;
-        --scouts-foreground: #ffffff;
-
-
         --input: #f9fafb;
-        --input-border: #d1d5db;
+        --input-border: var(--primary);
         --input-foreground: #111827;
     }
 
     html {
-        @apply bg-alternative
+        @apply bg-alternative text-alternative-foreground
     }
 
     body {
-        @apply bg-background
+        @apply bg-background text-foreground
     }
 }

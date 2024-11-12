@@ -1,137 +1,33 @@
 ---
+import Address from "@/components/ui/address.astro";
+import ContactForm from "@/components/ui/contact-form.astro";
+import FooterNavigation from "@/components/ui/footer-navigation.astro";
 import HeaderNavigation from "@/components/ui/header-navigation.astro";
 import Hero from "@/components/ui/hero.astro";
-import Seperator from "@/components/ui/seperator.astro";
+import JoinUsCta from "@/components/ui/join-us-cta.astro";
+import OurSections from "@/components/ui/sections-list.astro";
 import PageLayout from "@/layouts/page.layout.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@/lib/consts";
-import { cn } from "@/lib/utils";
-import Image from "astro/components/Image.astro";
-import { getCollection } from "astro:content";
-import { Calendar, Clock, Clock1 } from "lucide-react";
-
-const sections = (await getCollection("sections")).sort((a, b) => {
-	return a.data.order - b.data.order;
-});
 ---
 
 <PageLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
 	<HeaderNavigation />
 
-	<Seperator />
-
 	<Hero />
 
-	<Seperator />
+	<div class="bg-alternative text-alternative-foreground">
+		<OurSections />
+	</div>
 
-	<section
-		id="sections"
-		class={cn(
-			"bg-alternative text-alternative-foreground px-4 py-8 antialiased",
-		)}
-	>
-		<div class="max-w-screen-md mb-8 lg:mb-16 text-center mx-auto">
-			<h2
-				class="mb-4 text-4xl tracking-tight font-extrabold text-primary"
-			>
-				Our Sections
-			</h2>
-			<p class="sm:text-xl">
-				Here at Flowbite we focus on markets where technology,
-				innovation, and capital can unlock long-term value and drive
-				economic growth.
-			</p>
-		</div>
-		<div
-			class="max-w-screen-lg mx-auto mt-8 lg:mt-16 grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-		>
-			{
-				sections &&
-					sections.map(({ data }, index) => (
-						<div class="text-center">
-							<Image
-								loading={"lazy"}
-								src={data.image}
-								alt={data.name}
-								width={256}
-								height={256}
-								quality={100}
-								class="mx-auto mb-4 w-64 h-64 sm:h-auto sm:w-auto rounded-2xl"
-							/>
+	<JoinUsCta />
 
-							<h3 class="mb-1 text-2xl font-bold tracking-tight">
-								{data.name}
-							</h3>
-							<p>{data.meetingDay}</p>
-							<p>
-								{data.meetingStartTime} til{" "}
-								{data.meetingEndTime}
-							</p>
-						</div>
-					))
-			}
-		</div>
-	</section>
+	<div class="bg-alternative text-alternative-foreground">
+		<Address />
+	</div>
 
-	<Seperator />
+	<ContactForm />
 
-	<section id="contact" class="">
-		<div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-			<h2
-				class="mb-4 text-4xl tracking-tight font-extrabold text-center text-primary"
-			>
-				Contact Us
-			</h2>
-			<p class="mb-8 lg:mb-16 font-light text-center sm:text-xl">
-				Got a technical issue? Want to send feedback about a beta
-				feature? Need details about our Business plan? Let us know.
-			</p>
-			<form action="#" class="space-y-8">
-				<div>
-					<label for="email" class="block mb-2 text-sm font-medium"
-						>Your email</label
-					>
-					<input
-						type="email"
-						id="email"
-						class="shadow-sm bg-gray-50 text-primary border border-primary text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
-						placeholder="name@flowbite.com"
-						required
-					/>
-				</div>
-				<div>
-					<label for="subject" class="block mb-2 text-sm font-medium"
-						>Subject</label
-					>
-					<input
-						type="text"
-						id="subject"
-						class="block p-3 w-full text-sm text-primary bg-gray-50 rounded-lg border border-primary shadow-sm focus:ring-primary focus:border-primary"
-						placeholder="Let us know how we can help you"
-						required
-					/>
-				</div>
-				<div class="sm:col-span-2">
-					<label for="message" class="block mb-2 text-sm font-medium"
-						>Your message</label
-					>
-					<textarea
-						id="message"
-						rows="6"
-						class="block p-2.5 w-full text-sm text-primary bg-gray-50 rounded-lg shadow-sm border border-primary focus:ring-primary focus:border-primary"
-						placeholder="Leave a comment..."></textarea>
-				</div>
-				<button
-					type="submit"
-					class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary w-full hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary"
-					>Send message</button
-				>
-			</form>
-		</div>
-	</section>
+	<div class="bg-alternative text-alternative-foreground">
+		<FooterNavigation />
+	</div>
 </PageLayout>
-
-<!--
-
-
-
--->

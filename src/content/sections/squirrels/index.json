@@ -1,9 +1,10 @@
 {
-    "name": "Squirrels",
-    "type": "squirrels",
+    "age": "4-6",
     "image": "./Image.png",
     "meetingDay": "Wednesday",
-    "meetingStartTime": "17:00",
     "meetingEndTime": "18:00",
-    "order": 1
+    "meetingStartTime": "17:00",
+    "name": "Squirrels",
+    "order": 1,
+    "type": "squirrels"
 }

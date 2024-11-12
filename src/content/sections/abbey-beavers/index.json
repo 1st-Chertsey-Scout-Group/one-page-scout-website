@@ -1,9 +1,10 @@
 {
-    "name": "Abbey Beavers",
-    "type": "beavers",
+    "age": "6-8",
     "image": "./Image.png",
     "meetingDay": "Monday",
-    "meetingStartTime": "17:45",
     "meetingEndTime": "18:45",
-    "order": 2
+    "meetingStartTime": "17:45",
+    "name": "Abbey Beavers",
+    "order": 2,
+    "type": "beavers"
 }
