@@ -1,0 +1,33 @@
+---
+import Address from "@/components/ui/address.astro";
+import ContactForm from "@/components/ui/contact-form.astro";
+import FooterNavigation from "@/components/ui/footer-navigation.astro";
+import HeaderNavigation from "@/components/ui/header-navigation.astro";
+import Hero from "@/components/ui/hero.astro";
+import JoinUsCta from "@/components/ui/join-us-cta.astro";
+import OurSections from "@/components/ui/sections-list.astro";
+import PageLayout from "@/layouts/page.layout.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "@/lib/consts";
+---
+
+<PageLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+	<HeaderNavigation />
+
+	<Hero />
+
+	<div class="bg-alternative text-alternative-foreground">
+		<OurSections />
+	</div>
+
+	<JoinUsCta />
+
+	<div class="bg-alternative text-alternative-foreground">
+		<Address />
+	</div>
+
+	<ContactForm />
+
+	<div class="bg-alternative text-alternative-foreground">
+		<FooterNavigation />
+	</div>
+</PageLayout>

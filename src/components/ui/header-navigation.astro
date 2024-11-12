@@ -1,0 +1,50 @@
+---
+import { Image } from "astro:assets";
+
+import logo from "@/images/group-badge.png";
+import { ADDRESS_TITLE, CONTACT_TITLE, HEADER_ALT_TEXT, SECTIONS_TITLE, GROUP_NAME } from "@/lib/consts";
+import type { NavigationLink } from "@/models/navigation-link";
+
+const links: NavigationLink[] = [
+    {
+        text: SECTIONS_TITLE,
+        url: "#sections",
+        target: "_self"
+    },
+    {
+        text: ADDRESS_TITLE,
+        url: "#address",
+        target: "_self"
+    },
+    {
+        text: CONTACT_TITLE,
+        url: "#contact",
+        target: "_self"
+    },
+];
+---
+
+<div class="flex flex-col items-center gap-4 pt-8">
+    <Image
+        loading={"eager"}
+        src={logo}
+        alt={HEADER_ALT_TEXT}
+        quality={100}
+        width={128}
+        height={128}
+        class="aspect-square"
+    />
+    <h1 class="text-5xl text-center font-extrabold tracking-tight">{GROUP_NAME}</h1>
+    <ul class="flex flex-wrap items-center justify-center gap-4 mx-2">
+        {
+            links &&
+                links.map((link) => (
+                    <li>
+                        <a class="text-center hover:underline" href={link.url} target={link.target}>
+                            {link.text}
+                        </a>
+                    </li>
+                ))
+        }
+    </ul>
+</div>

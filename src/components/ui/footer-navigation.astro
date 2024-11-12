@@ -1,0 +1,89 @@
+---
+import { Image } from "astro:assets";
+
+import logo from "@/images/group-badge.png";
+import { CHARITY_NUMBER, FOOTER_SUBTITLE, GROUP_NAME, SITE_URL } from "@/lib/consts";
+import type { NavigationLink } from "@/models/navigation-link";
+
+const currentYear = new Date().getFullYear();
+
+const links: NavigationLink[] = [
+    {
+        text: "Accounts and annual returns",
+        url: `https://register-of-charities.charitycommission.gov.uk/en/charity-search/-/charity-details/${CHARITY_NUMBER}/accounts-and-annual-returns`,
+        target: "_blank",
+    },
+    {
+        text: "Runnymede District",
+        url: "http://runnymedescouts.org.uk/",
+        target: "_blank",
+    },
+    {
+        text: "Surrey County",
+        url: "http://www.surrey-scouts.org.uk/",
+        target: "_blank",
+    },
+    {
+        text: "The Scout Association",
+        url: "http://www.scouts.org.uk/",
+        target: "_blank",
+    },
+];
+---
+
+<footer class="p-4 md:p-8 lg:p-10">
+    <div class="mx-auto max-w-screen-xl text-center">
+        <a
+            href="/"
+            class="flex justify-center items-center text-2xl font-semibold"
+        >
+            <Image
+                loading={"lazy"}
+                src={logo}
+                alt={"Runnymede scouts logo"}
+                quality={100}
+                width={64}
+                height={64}
+                class="aspect-square mr-3"
+            />
+            {GROUP_NAME}
+        </a>
+        <p class="my-6">{FOOTER_SUBTITLE}</p>
+        <ul class="flex flex-wrap justify-center items-center mb-6">
+            {
+                links &&
+                    links.map((link) => (
+                        <li>
+                            <a
+                                href={link.url}
+                                target={link.target}
+                                class="mr-4 hover:underline md:mr-6 "
+                            >
+                                {link.text}
+                            </a>
+                        </li>
+                    ))
+            }
+        </ul>
+        <span class="text-sm sm:text-center">
+            <span>
+                © {currentYear}
+            </span>
+
+            <a
+                href={SITE_URL}
+                class="hover:underline underline-offset-2 text-primary"
+            >
+                {GROUP_NAME}
+            </a>
+            <span> | Charity number: </span>
+            <a
+                class="hover:underline underline-offset-2 text-primary"
+                href={`https://register-of-charities.charitycommission.gov.uk/en/charity-search/-/charity-details/${CHARITY_NUMBER}/charity-overview`}
+            >
+                {CHARITY_NUMBER}
+            </a>
+        </span>
+        <div>All Rights Reserved.</div>
+    </div>
+</footer>

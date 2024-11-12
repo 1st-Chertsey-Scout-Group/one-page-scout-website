@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --transparent: transparent;
+        --white: #ffffff;
+
+        --background: #ffffff;
+        --foreground: #000000;
+
+        --primary: #ab1c1c;
+        --primary-foreground: #ffffff;
+
+        --alternative: #f9fafb;
+        --alternative-foreground: #111827;
+
+        --input: #f9fafb;
+        --input-border: var(--primary);
+        --input-foreground: #111827;
+    }
+
+    html {
+        @apply bg-alternative text-alternative-foreground
+    }
+
+    body {
+        @apply bg-background text-foreground
+    }
+}

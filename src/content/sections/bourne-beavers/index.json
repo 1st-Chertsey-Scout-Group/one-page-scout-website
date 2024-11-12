@@ -1,0 +1,10 @@
+{
+    "age": "6-8",
+    "image": "./Image.png",
+    "meetingDay": "Thursday",
+    "meetingEndTime": "19:00",
+    "meetingStartTime": "18:00",
+    "name": "Bourne Beavers",
+    "order": 3,
+    "type": "beavers"
+}
