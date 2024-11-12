@@ -1,0 +1,9 @@
+{
+    "name": "Hunters Cubs",
+    "type": "cubs",
+    "image": "./Image.png",
+    "meetingDay": "Monday",
+    "meetingStartTime": "19:00",
+    "meetingEndTime": "20:30",
+    "order": 5
+}

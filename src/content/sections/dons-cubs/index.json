@@ -1,0 +1,9 @@
+{
+    "name": "Dons Cubs",
+    "type": "cubs",
+    "image": "./Image.png",
+    "meetingDay": "Wednesday",
+    "meetingStartTime": "19:00",
+    "meetingEndTime": "20:30",
+    "order": 4
+}

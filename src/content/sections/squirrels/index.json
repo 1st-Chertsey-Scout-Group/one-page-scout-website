@@ -1,0 +1,9 @@
+{
+    "name": "Squirrels",
+    "type": "squirrels",
+    "image": "./Image.png",
+    "meetingDay": "Wednesday",
+    "meetingStartTime": "17:00",
+    "meetingEndTime": "18:00",
+    "order": 1
+}

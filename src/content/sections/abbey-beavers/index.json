@@ -1,0 +1,9 @@
+{
+    "name": "Abbey Beavers",
+    "type": "beavers",
+    "image": "./Image.png",
+    "meetingDay": "Monday",
+    "meetingStartTime": "17:45",
+    "meetingEndTime": "18:45",
+    "order": 2
+}

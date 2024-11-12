@@ -1,0 +1,9 @@
+{
+    "name": "Scouts",
+    "type": "scouts",
+    "image": "./Image.png",
+    "meetingDay": "Thursday",
+    "meetingStartTime": "19:15",
+    "meetingEndTime": "21:00",
+    "order": 6
+}

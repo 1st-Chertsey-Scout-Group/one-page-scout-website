@@ -1,0 +1,16 @@
+---
+import { Image } from "astro:assets";
+
+import fleur from "@/images/fleur-de-lis.svg";
+---
+
+<div class="pt-6 pb-4">
+    <Image
+        loading={"eager"}
+        src={fleur}
+        alt={"fleur-de-lis"}
+        quality={100}
+        width="32"
+        class="mx-auto"
+    />
+</div>

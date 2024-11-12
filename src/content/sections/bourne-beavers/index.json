@@ -1,0 +1,9 @@
+{
+    "name": "Bourne Beavers",
+    "type": "beavers",
+    "image": "./Image.png",
+    "meetingDay": "Thursday",
+    "meetingStartTime": "18:00",
+    "meetingEndTime": "19:00",
+    "order": 3
+}
