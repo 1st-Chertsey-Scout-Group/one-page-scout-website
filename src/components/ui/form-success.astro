@@ -1,0 +1,47 @@
+---
+import { Image } from "astro:assets";
+import logo from "@/images/group-badge.png";
+import { ArrowLeft } from "lucide-react";
+
+interface Props {
+    title: string;
+    subtitle: string;
+    headerAltText: string;
+    button: string;
+}
+
+const { title, subtitle, headerAltText, button } = Astro.props;
+---
+
+<section class="relative flex flex-col h-screen w-screen">
+    <div class="py-8 px-4 mx-auto max-w-screen-md sm:py-16 lg:px-6">
+        <div class="max-w-screen-md text-center">
+            <Image
+                loading={"eager"}
+                src={logo}
+                alt={headerAltText}
+                quality={100}
+                width={128}
+                height={128}
+                class="aspect-square mx-auto mb-4"
+            />
+            <h2 class="mb-4 text-4xl tracking-tight font-extrabold">
+                {title}
+            </h2>
+            <p class="mb-8 font-light sm:text-xl">
+                {subtitle}
+            </p>
+            <div
+                class="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4"
+            >
+                <a
+                    href="/"
+                    class="group inline-flex items-center justify-center px-4 py-2.5 bg-primary text-primary-foreground text-base font-medium text-center border border-white rounded-lg focus:ring-4 focus:ring-primary sm:w-1/2 mx-auto hover:border-primary hover:bg-white hover:text-primary"
+                >
+                    <ArrowLeft className="w-5 h-5 mr-2 -ml-1" />
+                    {button}
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
