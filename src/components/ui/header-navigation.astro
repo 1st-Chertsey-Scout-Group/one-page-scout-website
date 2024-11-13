@@ -1,25 +1,34 @@
 ---
 import { Image } from "astro:assets";
-
 import logo from "@/images/group-badge.png";
-import { ADDRESS_TITLE, CONTACT_TITLE, HEADER_ALT_TEXT, SECTIONS_TITLE, GROUP_NAME } from "@/lib/consts";
 import type { NavigationLink } from "@/models/navigation-link";
+
+interface Props {
+    addressTitle: string;
+    contactTitle: string;
+    headerAltText: string;
+    sectionsTitle: string;
+    groupName: string;
+}
+
+const { addressTitle, contactTitle, groupName, headerAltText, sectionsTitle } =
+    Astro.props;
 
 const links: NavigationLink[] = [
     {
-        text: SECTIONS_TITLE,
+        text: sectionsTitle,
         url: "#sections",
-        target: "_self"
+        target: "_self",
     },
     {
-        text: ADDRESS_TITLE,
+        text: addressTitle,
         url: "#address",
-        target: "_self"
+        target: "_self",
     },
     {
-        text: CONTACT_TITLE,
+        text: contactTitle,
         url: "#contact",
-        target: "_self"
+        target: "_self",
     },
 ];
 ---
@@ -28,19 +37,25 @@ const links: NavigationLink[] = [
     <Image
         loading={"eager"}
         src={logo}
-        alt={HEADER_ALT_TEXT}
+        alt={headerAltText}
         quality={100}
         width={128}
         height={128}
         class="aspect-square"
     />
-    <h1 class="text-5xl text-center font-extrabold tracking-tight">{GROUP_NAME}</h1>
+    <h1 class="text-5xl text-center font-extrabold tracking-tight">
+        {groupName}
+    </h1>
     <ul class="flex flex-wrap items-center justify-center gap-4 mx-2">
         {
             links &&
                 links.map((link) => (
                     <li>
-                        <a class="text-center hover:underline" href={link.url} target={link.target}>
+                        <a
+                            class="text-center hover:underline"
+                            href={link.url}
+                            target={link.target}
+                        >
                             {link.text}
                         </a>
                     </li>

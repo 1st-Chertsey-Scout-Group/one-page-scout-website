@@ -3,14 +3,18 @@ import { ArrowRight } from "lucide-react";
 
 import { Image } from "astro:assets";
 import heroImage from "@/images/hero.png";
+
 import Seperator from "./seperator.astro";
-import {
-    HERO_ALT_TEXT,
-    HERO_GET_IN_TOUCH,
-    HERO_PARAGRAPH_ONE,
-    HERO_PARAGRAPH_TWO,
-    HERO_TITLE,
-} from "@/lib/consts";
+
+interface Props {
+    title: string;
+    sentenceOne: string;
+    sentenceTwo: string;
+    getInTouch: string;
+    altText: string;
+}
+
+const { getInTouch, sentenceOne, sentenceTwo, title, altText } = Astro.props;
 ---
 
 <section class="bg-white">
@@ -18,23 +22,25 @@ import {
     <div
         class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 justify-center lg:justify-start"
     >
-        <div class="lg:mr-auto place-self-center lg:col-span-7  text-center lg:text-left">
+        <div
+            class="lg:mr-auto place-self-center lg:col-span-7 text-center lg:text-left"
+        >
             <h1
                 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-primary"
             >
-                {HERO_TITLE}
+                {title}
             </h1>
             <p class="max-w-2xl mb-6 font-light lg:mb-8 md:text-lg lg:text-xl">
-                {HERO_PARAGRAPH_ONE}
+                {sentenceOne}
             </p>
             <p class="max-w-2xl mb-6 font-light lg:mb-8 md:text-lg lg:text-xl">
-                {HERO_PARAGRAPH_TWO}
+                {sentenceTwo}
             </p>
             <a
                 href="#contact"
                 class="hidden lg:inline-flex w-full items-center justify-center px-5 py-3 text-base font-medium text-center text-primary border border-primary rounded-lg hover:bg-primary hover:text-primary-foreground focus:ring-4 focus:ring-primary"
             >
-                {HERO_GET_IN_TOUCH}
+                {getInTouch}
                 <ArrowRight className="w-5 h-5 ml-2 -mr-1" />
             </a>
         </div>
@@ -42,17 +48,19 @@ import {
             <Image
                 loading={"eager"}
                 src={heroImage}
-                alt={HERO_ALT_TEXT}
+                alt={altText}
                 quality={100}
+                height={1500}
+                width={1500}
                 class="w-full rounded-lg"
             />
         </div>
         <a
-        href="#contact"
-        class="mt-6 lg:hidden w-full inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-primary border border-primary rounded-lg hover:bg-primary hover:text-primary-foreground focus:ring-4 focus:ring-primary"
-    >
-        {HERO_GET_IN_TOUCH}
-        <ArrowRight className="w-5 h-5 ml-2 -mr-1" />
-    </a>
+            href="#contact"
+            class="mt-6 lg:hidden w-full inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-primary border border-primary rounded-lg hover:bg-primary hover:text-primary-foreground focus:ring-4 focus:ring-primary"
+        >
+            {getInTouch}
+            <ArrowRight className="w-5 h-5 ml-2 -mr-1" />
+        </a>
     </div>
 </section>

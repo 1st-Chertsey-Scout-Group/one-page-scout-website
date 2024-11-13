@@ -2,15 +2,23 @@
 import { Image } from "astro:assets";
 
 import logo from "@/images/group-badge.png";
-import { CHARITY_NUMBER, FOOTER_SUBTITLE, GROUP_NAME, SITE_URL } from "@/lib/consts";
 import type { NavigationLink } from "@/models/navigation-link";
 
 const currentYear = new Date().getFullYear();
 
+interface Props {
+    subtitle: string;
+    charityNumber: string;
+    siteUrl: string;
+    groupName: string;
+}
+
+const { charityNumber, groupName, siteUrl, subtitle } = Astro.props;
+
 const links: NavigationLink[] = [
     {
         text: "Accounts and annual returns",
-        url: `https://register-of-charities.charitycommission.gov.uk/en/charity-search/-/charity-details/${CHARITY_NUMBER}/accounts-and-annual-returns`,
+        url: `https://register-of-charities.charitycommission.gov.uk/en/charity-search/-/charity-details/${charityNumber}/accounts-and-annual-returns`,
         target: "_blank",
     },
     {
@@ -46,9 +54,9 @@ const links: NavigationLink[] = [
                 height={64}
                 class="aspect-square mr-3"
             />
-            {GROUP_NAME}
+            {groupName}
         </a>
-        <p class="my-6">{FOOTER_SUBTITLE}</p>
+        <p class="my-6">{subtitle}</p>
         <ul class="flex flex-wrap justify-center items-center mb-6">
             {
                 links &&
@@ -71,17 +79,17 @@ const links: NavigationLink[] = [
             </span>
 
             <a
-                href={SITE_URL}
+                href={siteUrl}
                 class="hover:underline underline-offset-2 text-primary"
             >
-                {GROUP_NAME}
+                {groupName}
             </a>
             <span> | Charity number: </span>
             <a
                 class="hover:underline underline-offset-2 text-primary"
-                href={`https://register-of-charities.charitycommission.gov.uk/en/charity-search/-/charity-details/${CHARITY_NUMBER}/charity-overview`}
+                href={`https://register-of-charities.charitycommission.gov.uk/en/charity-search/-/charity-details/${charityNumber}/charity-overview`}
             >
-                {CHARITY_NUMBER}
+                {charityNumber}
             </a>
         </span>
         <div>All Rights Reserved.</div>

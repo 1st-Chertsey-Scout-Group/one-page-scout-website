@@ -4,13 +4,14 @@ import BaseLayout from "@/layouts/base.layout.astro";
 interface PageProps {
   title: string;
   description: string;
+  url: string;
 }
 
-const { title, description }: PageProps =
+const { title, description, url }: PageProps =
   Astro.props.frontmatter || Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} url={url}>
   <main>
     <slot />
   </main>
