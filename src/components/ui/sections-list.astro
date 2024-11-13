@@ -2,11 +2,17 @@
 import { getCollection } from "astro:content";
 import Seperator from "./seperator.astro";
 import Image from "astro/components/Image.astro";
-import { SECTIONS_SUBTITLE, SECTIONS_TITLE } from "@/lib/consts";
 
 const sections = (await getCollection("sections")).sort((a, b) => {
     return a.data.order - b.data.order;
 });
+
+interface Props {
+    title: string;
+    subtitle: string;
+}
+
+const { subtitle, title } = Astro.props;
 ---
 
 <section id="sections" class="px-4 py-8 antialiased">
@@ -15,10 +21,10 @@ const sections = (await getCollection("sections")).sort((a, b) => {
         <h2
             class="mb-4 text-4xl tracking-tight font-extrabold text-center text-primary"
         >
-            {SECTIONS_TITLE}
+            {title}
         </h2>
         <p class="mb-8 lg:mb-16 font-light text-center sm:text-xl">
-            {SECTIONS_SUBTITLE}
+            {subtitle}
         </p>
     </div>
     <div

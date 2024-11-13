@@ -7,27 +7,99 @@ import Hero from "@/components/ui/hero.astro";
 import JoinUsCta from "@/components/ui/join-us-cta.astro";
 import OurSections from "@/components/ui/sections-list.astro";
 import PageLayout from "@/layouts/page.layout.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "@/lib/consts";
+
+import {
+	address,
+	addressTitle,
+	addressUrl,
+	charityNumber,
+	contactEmailLabel,
+	contactEmailPlaceholder,
+	contactMessageLabel,
+	contactMessagePlaceholder,
+	contactSubjectLabel,
+	contactSubjectPlaceholder,
+	contactSubmitButton,
+	contactSubtitle,
+	contactTitle,
+	footerSubtitle,
+	groupName,
+	headerAltText,
+	heroAltText,
+	heroGetInTouch,
+	heroSentenceOne,
+	heroSentenceTwo,
+	heroTitle,
+	joinCtaButton,
+	joinCtaSubtitle,
+	joinCtaTitle,
+	logo,
+	sectionsSubtitle,
+	sectionsTitle,
+	siteDescription,
+	siteTitle,
+	siteUrl,
+	heroImage,
+} from "../customisations.json";
 ---
 
-<PageLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-	<HeaderNavigation />
+<PageLayout title={siteTitle} description={siteDescription}>
+	<HeaderNavigation
+		addressTitle={addressTitle}
+		contactTitle={contactTitle}
+		groupName={groupName}
+		headerAltText={headerAltText}
+		sectionsTitle={sectionsTitle}
+		logo={logo}
+	/>
 
-	<Hero />
+	<Hero
+		getInTouch={heroGetInTouch}
+		sentenceOne={heroSentenceOne}
+		sentenceTwo={heroSentenceTwo}
+		title={heroTitle}
+		altText={heroAltText}
+		image={heroImage}
+	/>
 
 	<div class="bg-alternative text-alternative-foreground">
-		<OurSections />
+		<OurSections subtitle={sectionsSubtitle} title={sectionsTitle} />
 	</div>
 
-	<JoinUsCta />
+	<JoinUsCta
+		button={joinCtaButton}
+		subtitle={joinCtaSubtitle}
+		title={joinCtaTitle}
+	/>
 
 	<div class="bg-alternative text-alternative-foreground">
-		<Address />
+		<Address
+			title={addressTitle}
+			address={address}
+			mapsUrl={addressUrl}
+			groupName={groupName}
+		/>
 	</div>
 
-	<ContactForm />
+	<ContactForm
+		title={contactTitle}
+		emailLabel={contactEmailLabel}
+		emailPlaceholder={contactEmailPlaceholder}
+		messageLabel={contactMessageLabel}
+		messagePlaceholder={contactMessagePlaceholder}
+		subjectLabel={contactSubjectLabel}
+		subjectPlaceholder={contactSubjectPlaceholder}
+		submitButton={contactSubmitButton}
+		subtitle={contactSubtitle}
+	/>
 
 	<div class="bg-alternative text-alternative-foreground">
-		<FooterNavigation />
+		<FooterNavigation
+			charityNumber={charityNumber}
+			groupName={groupName}
+			siteUrl={siteUrl}
+			subtitle={footerSubtitle}
+			logo={logo}
+		/>
 	</div>
 </PageLayout>
