@@ -12,6 +12,7 @@ interface Props {
     messageLabel: string;
     messagePlaceholder: string;
     submitButton: string;
+    siteUrl: string;
 }
 
 const {
@@ -24,6 +25,7 @@ const {
     subjectPlaceholder,
     submitButton,
     subtitle,
+    siteUrl,
 } = Astro.props;
 ---
 
@@ -38,7 +40,20 @@ const {
         <p class="mb-8 lg:mb-16 font-light text-center sm:text-xl">
             {subtitle}
         </p>
-        <form action="#" class="space-y-8">
+        <form
+            name="contact"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            class="space-y-8"
+        >
+            <input
+                class="hidden"
+                type="hidden"
+                name="subject"
+                value={`[${siteUrl}] New website enquiry`}
+            />
+            <input class="hidden" name="bot-field" />
+
             <div>
                 <label for="email" class="block mb-2 font-medium">
                     {emailLabel}
@@ -46,6 +61,7 @@ const {
                 <input
                     type="email"
                     id="email"
+                    name="email"
                     class="shadow-sm bg-input text-input-foreground border border-input-border rounded-lg focus:ring-1 focus:ring-primary block w-full p-2.5"
                     placeholder={emailPlaceholder}
                     required
@@ -58,6 +74,7 @@ const {
                 <input
                     type="text"
                     id="subject"
+                    name="subject"
                     class="block p-3 w-full text-input-foreground bg-input rounded-lg border border-input-border shadow-sm focus:ring-primary"
                     placeholder={subjectPlaceholder}
                     required
@@ -70,6 +87,7 @@ const {
                 <textarea
                     id="message"
                     rows="6"
+                    name="message"
                     class="block p-2.5 w-full text-input-foreground bg-input rounded-lg shadow-sm border border-input-border focus:ring-primary"
                     placeholder={messagePlaceholder}></textarea>
             </div>
