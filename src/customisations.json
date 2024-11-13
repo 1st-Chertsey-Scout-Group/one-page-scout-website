@@ -27,5 +27,8 @@
   "heroAltText": "1st Chertsey Scout HQ",
   "heroGetInTouch": "Get in touch",
   "heroTitle": "Home of Scouting in Chertsey",
-  "joinCtaSubtitle": "If you want to get involved with Scouting as volunteer or gain skills for life as a Squirrel, Beaver, Cub, Scout or Explorer why not 1st Chertsey Scout Group"
+  "joinCtaSubtitle": "If you want to get involved with Scouting as volunteer or gain skills for life as a Squirrel, Beaver, Cub, Scout or Explorer why not 1st Chertsey Scout Group",
+  "successTitle": "Thank you!",
+  "successSubtitle": "Your form submission has been received.",
+  "successButton": "Back to our site"
 }

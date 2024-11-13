@@ -191,9 +191,21 @@ export async function GET() {
             - label: "Contact Submit Button"
               name: "contactSubmitButton"
               widget: "string"
-
+          
             - label: "Footer Subtitle"
               name: "footerSubtitle"
+              widget: "string"
+
+            - label: "Success Title"
+              name: "successTitle"
+              widget: "string"
+
+            - label: "Success Subtitle"
+              name: "successSubtitle"
+              widget: "string"
+
+            - label: "Success Button"
+              name: "successButton"
               widget: "string"
 
             - label: "Charity Number"
