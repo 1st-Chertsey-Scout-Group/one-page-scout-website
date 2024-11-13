@@ -1,5 +1,4 @@
 {
-  "heroImage": "/src/images/hero.png",
   "charityNumber": "1055895",
   "addressTitle": "Find Us",
   "sectionsSubtitle": "Offering fun and challenging activities, unique experiences, everyday adventure and the chance to help others so that we make a positive impact in communities.",
@@ -11,7 +10,6 @@
   "sectionsTitle": "Our Sections",
   "groupName": "1st Chertsey Scout Group",
   "contactSubmitButton": "Send message",
-  "logo": "/src/images/group-badge.png",
   "contactMessagePlaceholder": "Leave a comment...",
   "contactMessageLabel": "Your message",
   "heroSentenceTwo": "At present, over 100 young people take part in activities each week, with a diverse programme provided by an experienced team of volunteer leaders and parent helpers.",

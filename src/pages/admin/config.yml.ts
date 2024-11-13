@@ -100,11 +100,6 @@ export async function GET() {
               name: "groupName"
               widget: "string"
 
-            - label: "Logo"
-              name: "logo"
-              widget: "image"
-              media_folder: "/src/images"
-
             - label: "Header Alt Text"
               name: "headerAltText"
               widget: "string"
@@ -124,11 +119,6 @@ export async function GET() {
             - label: "Hero Get In Touch"
               name: "heroGetInTouch"
               widget: "string"
-
-            - label: "Hero Image"
-              name: "heroImage"
-              widget: "image"
-              media_folder: "/src/images"
 
             - label: "Hero Alt Text"
               name: "heroAltText"

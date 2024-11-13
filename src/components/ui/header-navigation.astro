@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-
+import logo from "@/images/group-badge.png";
 import type { NavigationLink } from "@/models/navigation-link";
 
 interface Props {
@@ -9,17 +9,10 @@ interface Props {
     headerAltText: string;
     sectionsTitle: string;
     groupName: string;
-    logo: string;
 }
 
-const {
-    addressTitle,
-    contactTitle,
-    groupName,
-    headerAltText,
-    sectionsTitle,
-    logo,
-} = Astro.props;
+const { addressTitle, contactTitle, groupName, headerAltText, sectionsTitle } =
+    Astro.props;
 
 const links: NavigationLink[] = [
     {

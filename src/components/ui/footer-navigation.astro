@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 
+import logo from "@/images/group-badge.png";
 import type { NavigationLink } from "@/models/navigation-link";
 
 const currentYear = new Date().getFullYear();
@@ -10,10 +11,9 @@ interface Props {
     charityNumber: string;
     siteUrl: string;
     groupName: string;
-    logo: string;
 }
 
-const { charityNumber, groupName, siteUrl, subtitle, logo } = Astro.props;
+const { charityNumber, groupName, siteUrl, subtitle } = Astro.props;
 
 const links: NavigationLink[] = [
     {
