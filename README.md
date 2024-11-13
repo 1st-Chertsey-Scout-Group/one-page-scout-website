@@ -1,4 +1,4 @@
-# group-site-template
+# one-page-scout-website
 
 ## 🧞 Commands
 
