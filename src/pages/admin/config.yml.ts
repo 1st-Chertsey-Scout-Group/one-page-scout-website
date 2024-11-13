@@ -3,7 +3,8 @@ export async function GET() {
     `
   local_backend: true
   backend:
-    name: git-gateway
+    name: github
+    repo: 1st-Chertsey-Scout-Group/one-page-scout-website
   media_folder: "public/media"
   public_folder: "public"
   publish_mode: simple
