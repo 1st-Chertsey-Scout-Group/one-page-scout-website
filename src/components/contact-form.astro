@@ -14,6 +14,7 @@ import {
   button,
   subtitle,
   title,
+  privacyNotice
 } from "@/customisations/contact-form.json";
 import Button from "./ui/button.astro";
 ---
@@ -54,8 +55,8 @@ import Button from "./ui/button.astro";
       />
 
       <Button Icon={SendHorizonalIcon} type="submit" text={button} />
-      <div class="text-sm">
-        We'll never share your details. Read our <a
+      <div class="text-sm text-center">
+        {privacyNotice} Read our <a
           href="/privacy-policy"
           class="hover:underline underline-offset-2 text-primary"
           >Privacy Policy</a
