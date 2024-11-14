@@ -2,7 +2,6 @@
 import { Image } from "astro:assets";
 
 import logo from "@/images/group-badge.png";
-import type { NavigationLink } from "@/models/navigation-link";
 
 const currentYear = new Date().getFullYear();
 
@@ -14,33 +13,7 @@ import {
 } from "@/customisations/site.json";
 import FooterLinkItem from "./footer-link-item.astro";
 
-const links: NavigationLink[] = [
-  {
-    text: "Accounts and Annual Returns",
-    url: `https://register-of-charities.charitycommission.gov.uk/en/charity-search/-/charity-details/${charityNumber}/accounts-and-annual-returns`,
-    target: "_blank",
-  },
-  {
-    text: "Privacy Policy",
-    url: "/privacy-policy",
-    target: "_blank",
-  },
-  {
-    text: "Runnymede District",
-    url: "http://runnymedescouts.org.uk/",
-    target: "_blank",
-  },
-  {
-    text: "Surrey County",
-    url: "http://www.surrey-scouts.org.uk/",
-    target: "_blank",
-  },
-  {
-    text: "The Scout Association",
-    url: "http://www.scouts.org.uk/",
-    target: "_blank",
-  },
-];
+import { links, copyright } from "@/customisations/footer.json";
 ---
 
 <footer class="p-4 md:p-8 lg:p-10">
@@ -82,6 +55,6 @@ const links: NavigationLink[] = [
         {charityNumber}
       </a>
     </span>
-    <div>All Rights Reserved.</div>
+    <div>{copyright}</div>
   </div>
 </footer>

@@ -88,13 +88,13 @@ export async function GET() {
             label: "Order",
             name: "order",
             widget: "number",
-            hint: "The display order for this section on the website. Example: Squirrels = 1, Beavers = 2, Cubs = 3, Scouts = 4, and so on."
+            hint: "The display order for this section on the website. Example: Squirrels = 1, Beavers = 2, Cubs = 3, Scouts = 4, and so on.",
           },
           {
             label: "Age",
             name: "age",
             widget: "string",
-            hint: "Specify the age range for this section. Use '½' for half years if needed."
+            hint: "Specify the age range for this section. Use '½' for half years if needed.",
           },
           {
             label: "Meeting Day",
@@ -122,19 +122,19 @@ export async function GET() {
                 value: "Friday",
               },
             ],
-            hint: "The regular weekday meeting day"
+            hint: "The regular weekday meeting day",
           },
           {
             label: "Meeting Start Time",
             name: "meetingStartTime",
             widget: "string",
-            hint: "Specify the regular meeting start time using the 24-hour clock format."
+            hint: "Specify the regular meeting start time using the 24-hour clock format.",
           },
           {
             label: "Meeting End Time",
             name: "meetingEndTime",
             widget: "string",
-            hint: "Specify the regular meeting end time using the 24-hour clock format."
+            hint: "Specify the regular meeting end time using the 24-hour clock format.",
           },
           {
             label: "Image",
@@ -142,7 +142,7 @@ export async function GET() {
             widget: "image",
             media_folder: ".",
             choose_url: false,
-            hint: "An image to represent the section. We recommend using a photo of a young person or a group of young people in uniform."
+            hint: "An image to represent the section. We recommend using a photo of a young person or a group of young people in uniform.",
           },
         ],
       },
@@ -252,8 +252,62 @@ export async function GET() {
                 pattern: buttonValidation,
                 hint: `Text for the button label, ${buttonMaxLength} characters max.`,
               },
+              {
+                label: "Privacy Notice",
+                name: "privacyNotice",
+                widget: "string",
+                pattern: labelValidation,
+                hint: `Privacy notice text below the submit button, ${buttonMaxLength} characters max.`,
+              },
             ],
           },
+          {
+            label: "Footer",
+            name: "footer",
+            file: "src/customisations/footer.json",
+            fields: [
+              {
+                label: "Links",
+                name: "links",
+                widget: "list",
+                allow_add: true,
+                fields: [
+                  {
+                    label: "Label",
+                    name: "text",
+                    widget: "string",
+                    pattern: labelValidation,
+                    hint: `Label text for the link, ${buttonMaxLength} characters max.`,
+                  },
+                  {
+                    label: "Url",
+                    name: "url",
+                    widget: "string",
+                    hint: "Enter the full URL, including http:// or https://",
+                  },
+                  {
+                    label: "Target",
+                    name: "target",
+                    widget: "select",
+                    default: ["_blank"],
+                    options: [
+                      { label: "Open in new tab", value: "_blank" },
+                      { label: "Open in same window", value: "_self" },
+                    ],
+                    hint: "We recommend opening internal links in the same window and external links in a new tab.",
+                  },
+                ],
+              },
+              {
+                label: "Copyright",
+                name: "copyright",
+                widget: "string",
+                pattern: labelValidation,
+                hint: `Copyright text at the bottom of the page, ${buttonMaxLength} characters max.`,
+              },
+            ],
+          },
+
           {
             label: "Hero",
             name: "hero",
