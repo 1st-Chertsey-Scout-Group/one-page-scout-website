@@ -3,16 +3,14 @@ import "@fontsource/nunito-sans";
 import "@/styles/globals.css";
 import { ViewTransitions } from "astro:transitions";
 
+import { description, title as seoTitle } from "@/customisations/seo.json";
+import { primary, primaryForeground } from "@/customisations/site.json";
+
 interface Props {
   title: string;
-  description: string;
-  url: string;
-  primaryColour: string;
-  primaryColourForeground: string;
 }
 
-const { title, description, url, primaryColour, primaryColourForeground } =
-  Astro.props;
+const { title } = Astro.props;
 
 const currentPath = Astro.url.pathname;
 ---
@@ -38,23 +36,18 @@ Our website's code is hosted on GitHub! You can explore, download, and contribut
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
 
-    <link rel="canonical" href={url + currentPath} />
+    <link rel="canonical" href={import.meta.env.SITE + currentPath} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <title>{title} | {seoTitle}</title>
     <ViewTransitions />
     <style
       define:vars={{
-        theme: primaryColour,
-        themeForeground: primaryColourForeground,
+        "primary": primary,
+        "primary-foreground": primaryForeground,
       }}
-    >
-      :root {
-        --primary: var(--theme);
-        --primary-foreground: var(--themeForeground);
-      }
-    </style>
+    ></style>
   </head>
   <body>
     <slot />

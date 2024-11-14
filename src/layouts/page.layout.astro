@@ -3,28 +3,12 @@ import BaseLayout from "@/layouts/base.layout.astro";
 
 interface PageProps {
   title: string;
-  description: string;
-  url: string;
-  primaryColour: string;
-  primaryColourForeground: string;
 }
 
-const {
-  title,
-  description,
-  url,
-  primaryColour,
-  primaryColourForeground,
-}: PageProps = Astro.props.frontmatter || Astro.props;
+const { title }: PageProps = Astro.props.frontmatter || Astro.props;
 ---
 
-<BaseLayout
-  title={title}
-  description={description}
-  url={url}
-  primaryColour={primaryColour}
-  primaryColourForeground={primaryColourForeground}
->
+<BaseLayout title={title}>
   <main>
     <slot />
   </main>

@@ -1,0 +1,13 @@
+---
+import type { NavigationLink } from "@/models/navigation-link";
+
+interface Props extends NavigationLink {}
+
+const { url, target, text }: Props = Astro.props;
+---
+
+<li>
+  <a class="text-center hover:underline" href={url} target={target}>
+    {text}
+  </a>
+</li>

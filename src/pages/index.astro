@@ -1,109 +1,37 @@
 ---
-import Address from "@/components/ui/address.astro";
-import ContactForm from "@/components/ui/contact-form.astro";
-import FooterNavigation from "@/components/ui/footer-navigation.astro";
-import HeaderNavigation from "@/components/ui/header-navigation.astro";
-import Hero from "@/components/ui/hero.astro";
-import JoinUsCta from "@/components/ui/join-us-cta.astro";
-import OurSections from "@/components/ui/sections-list.astro";
+import Address from "@/components/address.astro";
+import ContactForm from "@/components/contact-form.astro";
+import Hero from "@/components/hero.astro";
+import JoinUsCta from "@/components/join-us-cta.astro";
 import PageLayout from "@/layouts/page.layout.astro";
 
-import {
-	address,
-	addressTitle,
-	addressUrl,
-	charityNumber,
-	contactEmailLabel,
-	contactEmailPlaceholder,
-	contactMessageLabel,
-	contactMessagePlaceholder,
-	contactNameLabel,
-	contactNamePlaceholder,
-	contactSubmitButton,
-	contactSubtitle,
-	contactTitle,
-	footerSubtitle,
-	groupName,
-	headerAltText,
-	heroAltText,
-	heroGetInTouch,
-	heroSentenceOne,
-	heroSentenceTwo,
-	heroTitle,
-	joinCtaButton,
-	joinCtaSubtitle,
-	joinCtaTitle,
-	sectionsSubtitle,
-	sectionsTitle,
-	siteDescription,
-	siteTitle,
-	siteUrl,
-	primaryColour,
-	primaryColourForeground,
-} from "../customisations.json";
+import HeaderNavigation from "@/components/header/header-navigation.astro";
+import FooterNavigation from "@/components/footer/footer-navigation.astro";
+
+import { title } from "@/customisations/hero.json";
+import SectionsList from "@/components/sections/sections-list.astro";
 ---
 
-<PageLayout
-	title={siteTitle}
-	description={siteDescription}
-	url={siteUrl}
-	primaryColour={primaryColour}
-	primaryColourForeground={primaryColourForeground}
->
-	<HeaderNavigation
-		addressTitle={addressTitle}
-		contactTitle={contactTitle}
-		groupName={groupName}
-		headerAltText={headerAltText}
-		sectionsTitle={sectionsTitle}
-	/>
+<PageLayout title={title}>
+  <HeaderNavigation />
 
-	<Hero
-		getInTouch={heroGetInTouch}
-		sentenceOne={heroSentenceOne}
-		sentenceTwo={heroSentenceTwo}
-		title={heroTitle}
-		altText={heroAltText}
-	/>
+  <Hero />
 
-	<div class="bg-alternative text-alternative-foreground">
-		<OurSections subtitle={sectionsSubtitle} title={sectionsTitle} />
-	</div>
+  <div class="bg-alternative text-alternative-foreground">
+    <SectionsList />
+  </div>
 
-	<JoinUsCta
-		button={joinCtaButton}
-		subtitle={joinCtaSubtitle}
-		title={joinCtaTitle}
-	/>
+  <div class="bg-primary text-primary-foreground">
+    <JoinUsCta />
+  </div>
 
-	<div class="bg-alternative text-alternative-foreground">
-		<Address
-			title={addressTitle}
-			address={address}
-			mapsUrl={addressUrl}
-			groupName={groupName}
-		/>
-	</div>
+  <div class="bg-alternative text-alternative-foreground">
+    <Address />
+  </div>
 
-	<ContactForm
-		title={contactTitle}
-		emailLabel={contactEmailLabel}
-		emailPlaceholder={contactEmailPlaceholder}
-		messageLabel={contactMessageLabel}
-		messagePlaceholder={contactMessagePlaceholder}
-		nameLabel={contactNameLabel}
-		namePlaceholder={contactNamePlaceholder}
-		submitButton={contactSubmitButton}
-		subtitle={contactSubtitle}
-		siteUrl={siteUrl}
-	/>
+  <ContactForm />
 
-	<div class="bg-alternative text-alternative-foreground">
-		<FooterNavigation
-			charityNumber={charityNumber}
-			groupName={groupName}
-			siteUrl={siteUrl}
-			subtitle={footerSubtitle}
-		/>
-	</div>
+  <div class="bg-alternative text-alternative-foreground">
+    <FooterNavigation />
+  </div>
 </PageLayout>

@@ -1,0 +1,23 @@
+---
+import { address, title, mapUrl, mapTitle } from "@/customisations/address.json";
+import { groupName } from "@/customisations/site.json";
+import BlockElement from "./block/block-element.astro";
+---
+
+<BlockElement
+  id="address"
+  heading={{ title, subtitle: address, className: "text-primary" }}
+  seperator={{ loading: "lazy" }}
+>
+  <div class="max-w-screen-md mx-auto">
+    <iframe
+      src={mapUrl}
+      class="w-full h-96 rounded-lg border-0"
+      allowfullscreen="true"
+      loading="lazy"
+      title={mapTitle}
+      referrerpolicy="no-referrer-when-downgrade"
+    >
+    </iframe>
+  </div>
+</BlockElement>

@@ -23,7 +23,8 @@
 			"extensions": [
 				"astro-build.astro-vscode",
 				"ms-playwright.playwright",
-				"unifiedjs.vscode-mdx"
+				"unifiedjs.vscode-mdx",
+				"esbenp.prettier-vscode"
 			]
 		}
 	},

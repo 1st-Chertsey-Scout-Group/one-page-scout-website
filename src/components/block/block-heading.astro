@@ -1,0 +1,23 @@
+---
+import { cn } from "@/lib/utils";
+
+interface Props {
+  title: string;
+  subtitle: string;
+  className: string | undefined;
+}
+
+const { title, subtitle, className }: Props = Astro.props;
+---
+
+<h2
+  class={cn(
+    "mb-4 text-4xl tracking-tight font-extrabold text-center",
+    className
+  )}
+>
+  {title}
+</h2>
+<p class="mb-8 lg:mb-16 font-light text-center sm:text-xl">
+  {subtitle}
+</p>
