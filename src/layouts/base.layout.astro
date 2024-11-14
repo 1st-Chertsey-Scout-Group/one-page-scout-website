@@ -7,9 +7,12 @@ interface Props {
   title: string;
   description: string;
   url: string;
+  primaryColour: string;
+  primaryColourForeground: string;
 }
 
-const { title, description, url } = Astro.props;
+const { title, description, url, primaryColour, primaryColourForeground } =
+  Astro.props;
 
 const currentPath = Astro.url.pathname;
 ---
@@ -41,6 +44,17 @@ Our website's code is hosted on GitHub! You can explore, download, and contribut
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <ViewTransitions />
+    <style
+      define:vars={{
+        theme: primaryColour,
+        themeForeground: primaryColourForeground,
+      }}
+    >
+      :root {
+        --primary: var(--theme);
+        --primary-foreground: var(--themeForeground);
+      }
+    </style>
   </head>
   <body>
     <slot />

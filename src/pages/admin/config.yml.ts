@@ -96,9 +96,13 @@ export async function GET() {
               name: "siteDescription"
               widget: "text"
 
-            - label: "Group Name"
-              name: "groupName"
-              widget: "string"
+            - label: "Primary Colour"
+              name: "primaryColour"
+              widget: "color"
+
+            - label: "Primary Colour Foreground"
+              name: "primaryColourForeground"
+              widget: "color"
 
             - label: "Header Alt Text"
               name: "headerAltText"
@@ -172,12 +176,12 @@ export async function GET() {
               name: "contactEmailPlaceholder"
               widget: "string"
 
-            - label: "Contact Subject Label"
-              name: "contactSubjectLabel"
+            - label: "Contact Name Label"
+              name: "contactNameLabel"
               widget: "string"
 
-            - label: "Contact Subject Placeholder"
-              name: "contactSubjectPlaceholder"
+            - label: "Contact Name Placeholder"
+              name: "contactNamePlaceholder"
               widget: "string"
 
             - label: "Contact Message Label"
