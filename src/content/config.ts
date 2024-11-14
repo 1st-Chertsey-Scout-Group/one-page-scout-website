@@ -5,7 +5,6 @@ const sectionsCollection = defineCollection({
     schema: ({ image }) =>
         z.object({
             name: z.string(),
-            type: z.enum(["squirrels", "beavers", "cubs", "scouts"]),
             meetingDay: z.enum(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]),
             age: z.string(),
             meetingStartTime: z.string(),

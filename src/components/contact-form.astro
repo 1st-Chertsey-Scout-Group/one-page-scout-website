@@ -1,0 +1,66 @@
+---
+import { SendHorizonal, SendHorizonalIcon } from "lucide-react";
+import FormTextBox from "./ui/form-text-box.astro";
+import FormTextArea from "./ui/form-text-area.astro";
+import BlockElement from "./block/block-element.astro";
+
+import {
+  emailLabel,
+  emailPlaceholder,
+  messageLabel,
+  messagePlaceholder,
+  nameLabel,
+  namePlaceholder,
+  button,
+  subtitle,
+  title,
+} from "@/customisations/contact-form.json";
+import Button from "./ui/button.astro";
+---
+
+<BlockElement
+  id="contact"
+  heading={{ title, subtitle, className: "text-primary" }}
+  seperator={{ loading: "lazy" }}
+>
+  <div class="max-w-screen-md mx-auto">
+    <form
+      name="contact"
+      data-netlify="true"
+      action="/success"
+      netlify-honeypot="bot-field"
+      class="space-y-8"
+    >
+      <input class="hidden" name="bot-field" />
+
+      <FormTextBox
+        id="email"
+        type="email"
+        label={emailLabel}
+        placeholder={emailPlaceholder}
+      />
+
+      <FormTextBox
+        id="name"
+        type="text"
+        label={nameLabel}
+        placeholder={namePlaceholder}
+      />
+
+      <FormTextArea
+        id="message"
+        label={messageLabel}
+        placeholder={messagePlaceholder}
+      />
+
+      <Button Icon={SendHorizonalIcon} type="submit" text={button} />
+      <div class="text-sm">
+        We'll never share your details. Read our <a
+          href="/privacy-policy"
+          class="hover:underline underline-offset-2 text-primary"
+          >Privacy Policy</a
+        >.
+      </div>
+    </form>
+  </div>
+</BlockElement>

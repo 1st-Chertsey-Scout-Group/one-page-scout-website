@@ -1,226 +1,464 @@
+import { Document } from "yaml";
+
 export async function GET() {
-  let result =
-    `
-  local_backend: true
-  backend:
-    name: github
-    repo: 1st-Chertsey-Scout-Group/one-page-scout-website
-  media_folder: "public/media"
-  public_folder: "public"
-  publish_mode: simple
-  collections:
-    - name: "sections"
-      label: "Sections"
-      label_singular: "Section"
-      folder: "src/content/sections"
-      identifier_field: "name"
-      extension: "json"
-      publish: false
-      create: true
-      nested:
-          depth: 2
-          summary: '{{title}}'
-      media_folder: ''
-      public_folder: ''
-      fields:
-        - label: "Name"
-          name: "name"
-          widget: "string"
+  const isDev = import.meta.env.DEV;
 
-        - label: "Type"
-          name: "type"
-          widget: "select"
-          options:
-            - label: "Squirrels"
-              value: "squirrels"
-            - label: "Beavers"
-              value: "beavers"
-            - label: "Cubs"
-              value: "cubs"
-            - label: "Scouts"
-              value: "scouts"
+  const titleMinLength = 5;
+  const titleMaxLength = 100;
+  const titleValidation = [
+    `.{${titleMinLength},${titleMaxLength}}`,
+    `Titles must be between ${titleMinLength} and ${titleMaxLength} characters long.`,
+  ];
 
-        - label: "Order"
-          name: "order"
-          widget: "number"
+  const subtitleMaxLength = 250;
+  const subTitleValidation = [
+    `.{,${subtitleMaxLength}}`,
+    `Subtitles must be ${subtitleMaxLength} characters or fewer.`,
+  ];
 
-        - label: "Age"
-          name: "age"
-          widget: "string"
+  const labelMaxLength = 25;
+  const labelValidation = [
+    `.{,${labelMaxLength}}`,
+    `Labels must be ${labelMaxLength} characters or fewer.`,
+  ];
 
-        - label: "Meeting Day"
-          name: "meetingDay"
-          widget: "select"
-          options:
-            - label: "Monday"
-              value: "Monday"
-            - label: "Tuesday"
-              value: "Tuesday"
-            - label: "Wednesday"
-              value: "Wednesday"
-            - label: "Thursday"
-              value: "Thursday"
-            - label: "Friday"
-              value: "Friday"
+  const placeholderMaxLength = 50;
+  const placeholderValidation = [
+    `.{,${placeholderMaxLength}}`,
+    `Placeholders must be ${placeholderMaxLength} characters or fewer.`,
+  ];
 
-        - label: "Meeting Start Time"
-          name: "meetingStartTime"
-          widget: "string"
+  const buttonMaxLength = 25;
+  const buttonValidation = [
+    `.{,${buttonMaxLength}}`,
+    `Button label's must be ${buttonMaxLength} characters or fewer.`,
+  ];
 
-        - label: "Meeting End Time"
-          name: "meetingEndTime"
-          widget: "string"
+  const numberValidation = ["d+", "This field must be a valid number."];
 
-        - label: "Image"
-          name: "image"
-          widget: "image"
-          media_folder: "."
+  const altTextMaxLength = 250;
+  const altTextValidation = [
+    `.{,${altTextMaxLength}}`,
+    `Alt texts must be ${altTextMaxLength} characters or fewer.`,
+  ];
 
+  let backend = {};
 
-    - name: "content"
-      label: "Content"
-      files:
-        - label: "Customisations"
-          name: "customisations"
-          file: "src/customisations.json"
-          fields:
-            - label: "Site Title"
-              name: "siteTitle"
-              widget: "string"
+  if (isDev) {
+    backend = {
+      name: "git-gateway",
+    };
+  } else {
+    backend = {
+      name: "github",
+      repo: "1st-Chertsey-Scout-Group/one-page-scout-website",
+    };
+  }
 
-            - label: "Site Url"
-              name: "siteUrl"
-              widget: "string"
+  const doc = new Document({
+    local_backend: true,
+    backend: backend,
+    media_folder: "public/media",
+    public_folder: "public",
+    publish_mode: "simple",
+    collections: [
+      {
+        name: "sections",
+        label: "Sections",
+        label_singular: "Section",
+        folder: "src/content/sections",
+        identifier_field: "name",
+        extension: "json",
+        publish: false,
+        create: true,
+        nested: {
+          depth: 2,
+          summary: "{{title}}",
+        },
+        media_folder: "",
+        public_folder: "",
+        fields: [
+          {
+            label: "Name",
+            name: "name",
+            widget: "string",
+            hint: "If you only have one section of the same age group, use a simple name like 'Cubs.' For multiple sections, use the full name, such as 'Hunter Cubs.'",
+          },
+          {
+            label: "Order",
+            name: "order",
+            widget: "number",
+            hint: "The display order for this section on the website. Example: Squirrels = 1, Beavers = 2, Cubs = 3, Scouts = 4, and so on."
+          },
+          {
+            label: "Age",
+            name: "age",
+            widget: "string",
+            hint: "Specify the age range for this section. Use '½' for half years if needed."
+          },
+          {
+            label: "Meeting Day",
+            name: "meetingDay",
+            widget: "select",
+            options: [
+              {
+                label: "Monday",
+                value: "Monday",
+              },
+              {
+                label: "Tuesday",
+                value: "Tuesday",
+              },
+              {
+                label: "Wednesday",
+                value: "Wednesday",
+              },
+              {
+                label: "Thursday",
+                value: "Thursday",
+              },
+              {
+                label: "Friday",
+                value: "Friday",
+              },
+            ],
+            hint: "The regular weekday meeting day"
+          },
+          {
+            label: "Meeting Start Time",
+            name: "meetingStartTime",
+            widget: "string",
+            hint: "Specify the regular meeting start time using the 24-hour clock format."
+          },
+          {
+            label: "Meeting End Time",
+            name: "meetingEndTime",
+            widget: "string",
+            hint: "Specify the regular meeting end time using the 24-hour clock format."
+          },
+          {
+            label: "Image",
+            name: "image",
+            widget: "image",
+            media_folder: ".",
+            choose_url: false,
+            hint: "An image to represent the section. We recommend using a photo of a young person or a group of young people in uniform."
+          },
+        ],
+      },
+      {
+        name: "content",
+        label: "Content",
+        files: [
+          {
+            label: "Address",
+            name: "address",
+            file: "src/customisations/address.json",
+            fields: [
+              {
+                label: "Title",
+                name: "title",
+                widget: "string",
+                pattern: titleValidation,
+                hint: `Enter a title between ${titleMinLength} and ${titleMaxLength} characters.`,
+              },
+              {
+                label: "Address",
+                name: "address",
+                widget: "string",
+                pattern: subTitleValidation,
+                hint: `Provide the full address, up to ${subtitleMaxLength} characters.`,
+              },
+              {
+                label: "Map Url",
+                name: "mapUrl",
+                widget: "string",
+                hint: `Enter a Google Maps Embed URL, including https://`,
+              },
+              {
+                label: "Map Title",
+                name: "mapTitle",
+                widget: "string",
+                pattern: altTextValidation,
+                hint: `Describe the map for accessibility, up to ${altTextMaxLength} characters.`,
+              },
+            ],
+          },
+          {
+            label: "Form",
+            name: "contact-form",
+            file: "src/customisations/contact-form.json",
+            fields: [
+              {
+                label: "Title",
+                name: "title",
+                widget: "string",
+                pattern: titleValidation,
+                hint: `Enter a title between ${titleMinLength} and ${titleMaxLength} characters.`,
+              },
+              {
+                label: "Subtitle",
+                name: "subtitle",
+                widget: "text",
+                pattern: subTitleValidation,
+                hint: `Enter a subtitle, up to ${subtitleMaxLength} characters.`,
+              },
+              {
+                label: "Email Label",
+                name: "emailLabel",
+                widget: "string",
+                pattern: labelValidation,
+                hint: `Label text for the email field, ${labelMaxLength} characters max.`,
+              },
+              {
+                label: "Email Placeholder",
+                name: "emailPlaceholder",
+                widget: "string",
+                pattern: placeholderValidation,
+                hint: `Placeholder text for the email field, ${placeholderMaxLength} characters max.`,
+              },
+              {
+                label: "Name Label",
+                name: "nameLabel",
+                widget: "string",
+                pattern: labelValidation,
+                hint: `Label text for the name field, ${labelMaxLength} characters max.`,
+              },
+              {
+                label: "Name Placeholder",
+                name: "namePlaceholder",
+                widget: "string",
+                pattern: placeholderValidation,
+                hint: `Placeholder text for the name field, ${placeholderMaxLength} characters max.`,
+              },
+              {
+                label: "Message Label",
+                name: "messageLabel",
+                widget: "string",
+                pattern: labelValidation,
+                hint: `Label text for the message field, ${buttonMaxLength} characters max.`,
+              },
+              {
+                label: "Message Placeholder",
+                name: "messagePlaceholder",
+                widget: "string",
+                pattern: placeholderValidation,
+                hint: `Placeholder text for the message field, ${placeholderMaxLength} characters max.`,
+              },
+              {
+                label: "Button",
+                name: "button",
+                widget: "string",
+                pattern: buttonValidation,
+                hint: `Text for the button label, ${buttonMaxLength} characters max.`,
+              },
+            ],
+          },
+          {
+            label: "Hero",
+            name: "hero",
+            file: "src/customisations/hero.json",
+            fields: [
+              {
+                label: "Title",
+                name: "title",
+                widget: "string",
+                pattern: titleValidation,
+                hint: `Enter a title between ${titleMinLength} and ${titleMaxLength} characters.`,
+              },
+              {
+                label: "Line One",
+                name: "lineOne",
+                widget: "text",
+                pattern: subTitleValidation,
+                hint: `First line of text, up to ${subtitleMaxLength} characters.`,
+              },
+              {
+                label: "Line Two",
+                name: "lineTwo",
+                widget: "text",
+                pattern: subTitleValidation,
+                hint: `Second line of text, up to ${subtitleMaxLength} characters.`,
+              },
+              {
+                label: "Button",
+                name: "button",
+                widget: "string",
+                pattern: buttonValidation,
+                hint: `Text for the button label, ${buttonMaxLength} characters max.`,
+              },
+              {
+                label: "Image Alt Text",
+                name: "imageAlt",
+                widget: "string",
+                pattern: altTextValidation,
+                hint: `Describe the hero image for accessibility, up to ${altTextMaxLength} characters.`,
+              },
+            ],
+          },
+          {
+            label: "Join CTA",
+            name: "join-cta",
+            file: "src/customisations/join-cta.json",
+            fields: [
+              {
+                label: "Title",
+                name: "title",
+                widget: "string",
+                pattern: titleValidation,
+                hint: `Enter a title between ${titleMinLength} and ${titleMaxLength} characters.`,
+              },
+              {
+                label: "Subtitle",
+                name: "subtitle",
+                widget: "text",
+                pattern: subTitleValidation,
+                hint: `Enter a subtitle, up to ${subtitleMaxLength} characters.`,
+              },
+              {
+                label: "Button",
+                name: "button",
+                widget: "string",
+                pattern: buttonValidation,
+                hint: `Text for the button label, ${buttonMaxLength} characters max.`,
+              },
+            ],
+          },
+          {
+            label: "Sections",
+            name: "sections",
+            file: "src/customisations/sections.json",
+            fields: [
+              {
+                label: "Title",
+                name: "title",
+                widget: "string",
+                pattern: titleValidation,
+                hint: `Enter a title between ${titleMinLength} and ${titleMaxLength} characters.`,
+              },
+              {
+                label: "Subtitle",
+                name: "subtitle",
+                widget: "text",
+                pattern: subTitleValidation,
+                hint: `Enter a subtitle, up to ${subtitleMaxLength} characters.`,
+              },
+            ],
+          },
+          {
+            label: "SEO",
+            name: "seo",
+            file: "src/customisations/seo.json",
+            fields: [
+              {
+                label: "Title",
+                name: "title",
+                widget: "string",
+                pattern: titleValidation,
+                hint: `Enter a title between ${titleMinLength} and ${titleMaxLength} characters.`,
+              },
+              {
+                label: "Description",
+                name: "description",
+                widget: "text",
+                pattern: [".{,500}", "Must have no more than 500 characters"],
+                hint: `Provide a description, up to 500 characters.`,
+              },
+            ],
+          },
+          {
+            label: "Site",
+            name: "site",
+            file: "src/customisations/site.json",
+            fields: [
+              {
+                label: "Url",
+                name: "url",
+                widget: "string",
+                hint: "Enter the full URL, including http:// or https://",
+              },
+              {
+                label: "Group Name",
+                name: "groupName",
+                widget: "string",
+                pattern: subTitleValidation,
+                hint: `Enter the name of the group, up to ${subtitleMaxLength} characters.`,
+              },
+              {
+                label: "Primary",
+                name: "primary",
+                widget: "color",
+                default: "#000000",
+                allowInput: true,
+                hint: "Select the main color for your scarfs.",
+              },
+              {
+                label: "Primary Foreground",
+                name: "primaryForeground",
+                widget: "color",
+                default: "#fffffff",
+                allowInput: true,
+                hint: "Pick a contrasting color. Use white (#ffffff) or black (#000000) if unsure.",
+              },
+              {
+                label: "Logo Alt Text",
+                name: "logoAlt",
+                widget: "string",
+                pattern: altTextValidation,
+                hint: `Describe the logo for accessibility, up to ${altTextMaxLength} characters.`,
+              },
+              {
+                label: "Footer Text",
+                name: "footerText",
+                widget: "string",
+                pattern: subTitleValidation,
+                hint: `Text for the footer section, up to ${subtitleMaxLength} characters.`,
+              },
+              {
+                label: "Charity Number",
+                name: "charityNumber",
+                widget: "string",
+                pattern: numberValidation,
+                hint: "Enter the official charity registration number.",
+              },
+            ],
+          },
+          {
+            label: "Success",
+            name: "success",
+            file: "src/customisations/success.json",
+            fields: [
+              {
+                label: "Title",
+                name: "title",
+                widget: "string",
+                pattern: titleValidation,
+                hint: `Enter a title between ${titleMinLength} and ${titleMaxLength} characters.`,
+              },
+              {
+                label: "Subtitle",
+                name: "subtitle",
+                widget: "string",
+                pattern: subTitleValidation,
+                hint: `Enter a subtitle, up to ${subtitleMaxLength} characters.`,
+              },
+              {
+                label: "Button",
+                name: "button",
+                widget: "string",
+                pattern: buttonValidation,
+                hint: `Text for the button label, ${buttonMaxLength} characters max.`,
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  });
 
-            - label: "Site Description"
-              name: "siteDescription"
-              widget: "text"
-
-            - label: "Primary Colour"
-              name: "primaryColour"
-              widget: "color"
-
-            - label: "Primary Colour Foreground"
-              name: "primaryColourForeground"
-              widget: "color"
-
-            - label: "Header Alt Text"
-              name: "headerAltText"
-              widget: "string"
-
-            - label: "Hero Title"
-              name: "heroTitle"
-              widget: "string"
-
-            - label: "Hero Sentence One"
-              name: "heroSentenceOne"
-              widget: "text"
-
-            - label: "Hero Sentence Two"
-              name: "heroSentenceTwo"
-              widget: "text"
-
-            - label: "Hero Get In Touch"
-              name: "heroGetInTouch"
-              widget: "string"
-
-            - label: "Hero Alt Text"
-              name: "heroAltText"
-              widget: "string"
-
-            - label: "Sections Title"
-              name: "sectionsTitle"
-              widget: "string"
-
-            - label: "Sections Subtitle"
-              name: "sectionsSubtitle"
-              widget: "text"
-
-            - label: "Join CTA Title"
-              name: "joinCtaTitle"
-              widget: "string"
-
-            - label: "Join CTA Subtitle"
-              name: "joinCtaSubtitle"
-              widget: "text"
-
-            - label: "Join CTA Button"
-              name: "joinCtaButton"
-              widget: "string"
-
-            - label: "Address Title"
-              name: "addressTitle"
-              widget: "string"
-
-            - label: "Address"
-              name: "address"
-              widget: "string"
-
-            - label: "Address Url"
-              name: "addressUrl"
-              widget: "string"
-
-            - label: "Contact Title"
-              name: "contactTitle"
-              widget: "string"
-
-            - label: "Contact Subtitle"
-              name: "contactSubtitle"
-              widget: "text"
-
-            - label: "Contact Email Label"
-              name: "contactEmailLabel"
-              widget: "string"
-
-            - label: "Contact Email Placeholder"
-              name: "contactEmailPlaceholder"
-              widget: "string"
-
-            - label: "Contact Name Label"
-              name: "contactNameLabel"
-              widget: "string"
-
-            - label: "Contact Name Placeholder"
-              name: "contactNamePlaceholder"
-              widget: "string"
-
-            - label: "Contact Message Label"
-              name: "contactMessageLabel"
-              widget: "string"
-
-            - label: "Contact Message Placeholder"
-              name: "contactMessagePlaceholder"
-              widget: "string"
-
-            - label: "Contact Submit Button"
-              name: "contactSubmitButton"
-              widget: "string"
-          
-            - label: "Footer Subtitle"
-              name: "footerSubtitle"
-              widget: "string"
-
-            - label: "Success Title"
-              name: "successTitle"
-              widget: "string"
-
-            - label: "Success Subtitle"
-              name: "successSubtitle"
-              widget: "string"
-
-            - label: "Success Button"
-              name: "successButton"
-              widget: "string"
-
-            - label: "Charity Number"
-              name: "charityNumber"
-              widget: "string"
-
-  `;
-
-  return new Response(result, {
+  return new Response(String(doc), {
     headers: {
-      'Content-Type': 'text/yaml',
+      "Content-Type": "text/yaml",
     },
   });
 }

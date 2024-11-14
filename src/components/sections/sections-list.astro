@@ -1,0 +1,36 @@
+---
+import { getCollection } from "astro:content";
+
+const sections = (await getCollection("sections")).sort((a, b) => {
+  return a.data.order - b.data.order;
+});
+
+import { subtitle, title } from "@/customisations/sections.json";
+
+import SectionItem from "./section-item.astro";
+import BlockElement from "../block/block-element.astro";
+---
+
+<BlockElement
+  id="sections"
+  heading={{ title, subtitle, className: "text-primary" }}
+  seperator={{ loading: "lazy" }}
+>
+  <div
+    class="max-w-screen-lg mx-auto mt-8 lg:mt-16 grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+  >
+    {
+      sections &&
+        sections.map(({ data }) => (
+          <SectionItem
+            image={data.image}
+            name={data.name}
+            age={data.age}
+            meetingDay={data.meetingDay}
+            meetingEndTime={data.meetingEndTime}
+            meetingStartTime={data.meetingStartTime}
+          />
+        ))
+    }
+  </div>
+</BlockElement>

@@ -1,25 +1,11 @@
 ---
-import HeaderNavigation from "@/components/ui/header-navigation.astro";
-import FormSuccess from "@/components/ui/form-success.astro";
+import FormSuccess from "@/components/form-success.astro";
 
 import PageLayout from "@/layouts/page.layout.astro";
 
-import {
-    successTitle,
-    successSubtitle,
-    successButton,
-    headerAltText,
-    siteDescription,
-    siteTitle,
-    siteUrl,
-} from "../customisations.json";
+import { title } from "@/customisations/success.json";
 ---
 
-<PageLayout title={siteTitle} description={siteDescription} url={siteUrl}>
-    <FormSuccess
-        title={successTitle}
-        subtitle={successSubtitle}
-        headerAltText={headerAltText}
-        button={successButton}
-    />
+<PageLayout title={title}>
+    <FormSuccess />
 </PageLayout>

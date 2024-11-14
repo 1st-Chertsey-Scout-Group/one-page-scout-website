@@ -1,0 +1,20 @@
+---
+import { SendHorizonal } from "lucide-react";
+
+import { button, subtitle, title } from "@/customisations/join-cta.json";
+import BlockElement from "./block/block-element.astro";
+import Button from "./ui/button.astro";
+---
+
+<BlockElement
+  id="join"
+  heading={{ title, subtitle, className: "text-primary-foreground" }}
+  body={{ className: "mb-0 lg:mb-0" }}
+  className="py-8"
+>
+  <div class="max-w-screen-sm mx-auto">
+    <a href="#contact" class="w-full">
+      <Button Icon={SendHorizonal} type="button" text={button} />
+    </a>
+  </div>
+</BlockElement>

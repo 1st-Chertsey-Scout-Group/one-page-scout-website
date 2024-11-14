@@ -1,0 +1,40 @@
+---
+import Image from "astro/components/Image.astro";
+
+interface Props {
+  image: ImageMetadata;
+  name: string;
+  age: string;
+  meetingDay: string;
+  meetingStartTime: string;
+  meetingEndTime: string;
+}
+
+const {
+  image,
+  name,
+  age,
+  meetingDay,
+  meetingEndTime,
+  meetingStartTime,
+}: Props = Astro.props;
+---
+
+<div class="text-center">
+  <Image
+    loading={"eager"}
+    src={image}
+    alt={name}
+    width={256}
+    height={256}
+    quality={100}
+    class="mx-auto mb-4 w-64 h-64 sm:h-auto sm:w-auto rounded-2xl"
+  />
+
+  <h3 class="mb-1 text-2xl font-bold tracking-tight">{name}</h3>
+  <p class="text-sm mb-1">{age} years</p>
+  <p>{meetingDay}</p>
+  <p>
+    {meetingStartTime} til {meetingEndTime}
+  </p>
+</div>
