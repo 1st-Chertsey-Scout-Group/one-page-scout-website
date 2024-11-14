@@ -2,9 +2,9 @@
   "charityNumber": "1055895",
   "addressTitle": "Find Us",
   "sectionsSubtitle": "Offering fun and challenging activities, unique experiences, everyday adventure and the chance to help others so that we make a positive impact in communities.",
-  "contactSubjectPlaceholder": "Let us know how we can help you",
+  "contactNamePlaceholder": "Bear Grylls",
   "siteUrl": "/",
-  "contactSubjectLabel": "Subject",
+  "contactNameLabel": "Name",
   "heroSentenceOne": "Established in 1909, 1st Chertsey Scout Group continues to thrive, providing fun, adventure, and development opportunities.",
   "headerAltText": "1st Chertsey Logo",
   "sectionsTitle": "Our Sections",
@@ -30,5 +30,7 @@
   "joinCtaSubtitle": "If you want to get involved with Scouting as volunteer or gain skills for life as a Squirrel, Beaver, Cub, Scout or Explorer why not 1st Chertsey Scout Group",
   "successTitle": "Thank you!",
   "successSubtitle": "Your form submission has been received.",
-  "successButton": "Back to our site"
+  "successButton": "Back to our site",
+  "primaryColour": "#ab1c1c",
+  "primaryColourForeground": "#ffffff"
 }

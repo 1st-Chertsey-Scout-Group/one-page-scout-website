@@ -17,8 +17,8 @@ import {
 	contactEmailPlaceholder,
 	contactMessageLabel,
 	contactMessagePlaceholder,
-	contactSubjectLabel,
-	contactSubjectPlaceholder,
+	contactNameLabel,
+	contactNamePlaceholder,
 	contactSubmitButton,
 	contactSubtitle,
 	contactTitle,
@@ -38,10 +38,18 @@ import {
 	siteDescription,
 	siteTitle,
 	siteUrl,
+	primaryColour,
+	primaryColourForeground,
 } from "../customisations.json";
 ---
 
-<PageLayout title={siteTitle} description={siteDescription} url={siteUrl}>
+<PageLayout
+	title={siteTitle}
+	description={siteDescription}
+	url={siteUrl}
+	primaryColour={primaryColour}
+	primaryColourForeground={primaryColourForeground}
+>
 	<HeaderNavigation
 		addressTitle={addressTitle}
 		contactTitle={contactTitle}
@@ -83,8 +91,8 @@ import {
 		emailPlaceholder={contactEmailPlaceholder}
 		messageLabel={contactMessageLabel}
 		messagePlaceholder={contactMessagePlaceholder}
-		subjectLabel={contactSubjectLabel}
-		subjectPlaceholder={contactSubjectPlaceholder}
+		nameLabel={contactNameLabel}
+		namePlaceholder={contactNamePlaceholder}
 		submitButton={contactSubmitButton}
 		subtitle={contactSubtitle}
 		siteUrl={siteUrl}

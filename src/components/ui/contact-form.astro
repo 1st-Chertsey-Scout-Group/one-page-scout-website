@@ -7,8 +7,8 @@ interface Props {
     subtitle: string;
     emailLabel: string;
     emailPlaceholder: string;
-    subjectLabel: string;
-    subjectPlaceholder: string;
+    nameLabel: string;
+    namePlaceholder: string;
     messageLabel: string;
     messagePlaceholder: string;
     submitButton: string;
@@ -21,8 +21,8 @@ const {
     emailPlaceholder,
     messageLabel,
     messagePlaceholder,
-    subjectLabel,
-    subjectPlaceholder,
+    nameLabel,
+    namePlaceholder,
     submitButton,
     subtitle,
     siteUrl,
@@ -47,12 +47,6 @@ const {
             netlify-honeypot="bot-field"
             class="space-y-8"
         >
-            <input
-                class="hidden"
-                type="hidden"
-                name="subject"
-                value={`[${siteUrl}] New website enquiry`}
-            />
             <input class="hidden" name="bot-field" />
 
             <div>
@@ -69,15 +63,15 @@ const {
                 />
             </div>
             <div>
-                <label for="subject" class="block mb-2 font-medium">
-                    {subjectLabel}
+                <label for="name" class="block mb-2 font-medium">
+                    {nameLabel}
                 </label>
                 <input
                     type="text"
-                    id="subject"
-                    name="subject"
+                    id="name"
+                    name="name"
                     class="block p-3 w-full text-input-foreground bg-input rounded-lg border border-input-border shadow-sm focus:ring-primary"
-                    placeholder={subjectPlaceholder}
+                    placeholder={namePlaceholder}
                     required
                 />
             </div>
