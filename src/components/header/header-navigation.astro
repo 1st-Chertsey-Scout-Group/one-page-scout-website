@@ -1,31 +1,10 @@
 ---
 import { Image } from "astro:assets";
 import logo from "@/images/group-badge.png";
-import type { NavigationLink } from "@/models/navigation-link";
-
 import { logoAlt, groupName } from "@/customisations/site.json";
-import { title as sectionsTitle } from "@/customisations/sections.json";
-import { title as addressTitle } from "@/customisations/address.json";
-import { title as contactTitle } from "@/customisations/contact-form.json";
 import HeaderLinkItem from "./header-link-item.astro";
 
-const links: NavigationLink[] = [
-  {
-    text: sectionsTitle,
-    url: "/#sections",
-    target: "_self",
-  },
-  {
-    text: addressTitle,
-    url: "/#address",
-    target: "_self",
-  },
-  {
-    text: contactTitle,
-    url: "/#contact",
-    target: "_self",
-  },
-];
+import { links } from "@/customisations/header.json";
 ---
 
 <div class="flex flex-col items-center gap-4 pt-8">

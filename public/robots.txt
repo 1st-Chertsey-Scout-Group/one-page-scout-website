@@ -1,0 +1,13 @@
+# Allow all bots to crawl everything (default rule)
+User-agent: *
+Disallow:
+
+# Prevent crawlers from accessing sensitive or unnecessary directories
+Disallow: /admin/
+Disallow: /functions/
+Disallow: /.netlify/functions/
+
+Allow: /*.css
+Allow: /*.js
+Allow: /*.webp
+Allow: /*.svg

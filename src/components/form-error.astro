@@ -1,0 +1,21 @@
+---
+import { ArrowLeft } from "lucide-react";
+
+import { button, subtitle, title } from "@/customisations/error.json";
+import BlockElement from "./block/block-element.astro";
+import Button from "./ui/button.astro";
+---
+
+<BlockElement
+  id="error"
+  heading={{ title, subtitle: subtitle, className: "text-primary" }}
+  seperator={{ loading: "eager" }}
+>
+  <div class="max-w-screen-md mx-auto">
+    <div class="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
+      <a href="/" class="block w-full">
+        <Button Icon={ArrowLeft} type="button" text={button} iconClassName="order-first" />
+      </a>
+    </div>
+  </div>
+</BlockElement>
