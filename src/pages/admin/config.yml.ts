@@ -1,5 +1,8 @@
 import { Document } from "yaml";
 
+const user = "1st-Chertsey-Scout-Group";
+const repo = "one-page-scout-website";
+
 export async function GET() {
   const isDev = import.meta.env.DEV;
 
@@ -12,25 +15,25 @@ export async function GET() {
 
   const subtitleMaxLength = 250;
   const subTitleValidation = [
-    `.{,${subtitleMaxLength}}`,
+    `.{0,${subtitleMaxLength}}`,
     `Subtitles must be ${subtitleMaxLength} characters or fewer.`,
   ];
 
   const labelMaxLength = 25;
   const labelValidation = [
-    `.{,${labelMaxLength}}`,
+    `.{0,${labelMaxLength}}`,
     `Labels must be ${labelMaxLength} characters or fewer.`,
   ];
 
   const placeholderMaxLength = 50;
   const placeholderValidation = [
-    `.{,${placeholderMaxLength}}`,
+    `.{0,${placeholderMaxLength}}`,
     `Placeholders must be ${placeholderMaxLength} characters or fewer.`,
   ];
 
   const buttonMaxLength = 25;
   const buttonValidation = [
-    `.{,${buttonMaxLength}}`,
+    `.{0,${buttonMaxLength}}`,
     `Button label's must be ${buttonMaxLength} characters or fewer.`,
   ];
 
@@ -38,8 +41,14 @@ export async function GET() {
 
   const altTextMaxLength = 250;
   const altTextValidation = [
-    `.{,${altTextMaxLength}}`,
+    `.{0,${altTextMaxLength}}`,
     `Alt texts must be ${altTextMaxLength} characters or fewer.`,
+  ];
+
+  const announcementMessageMaxLength = 100;
+  const announcementMessageValidation = [
+    `.{0,${announcementMessageMaxLength}}`,
+    `message must be ${announcementMessageMaxLength} characters or fewer.`,
   ];
 
   let backend = {};
@@ -51,7 +60,7 @@ export async function GET() {
   } else {
     backend = {
       name: "github",
-      repo: "1st-Chertsey-Scout-Group/one-page-scout-website",
+      repo: `${user}/${repo}`,
     };
   }
 
@@ -151,6 +160,45 @@ export async function GET() {
         label: "Content",
         files: [
           {
+            label: "Header",
+            name: "header",
+            file: "src/customisations/header.json",
+            fields: [
+              {
+                label: "Links",
+                name: "links",
+                widget: "list",
+                allow_add: true,
+                fields: [
+                  {
+                    label: "Label",
+                    name: "text",
+                    widget: "string",
+                    pattern: labelValidation,
+                    hint: `Label text for the link, ${buttonMaxLength} characters max.`,
+                  },
+                  {
+                    label: "Url",
+                    name: "url",
+                    widget: "string",
+                    hint: "Enter the full URL, including http:// or https://. Or link to the page headers using #sections, #address or #contact",
+                  },
+                  {
+                    label: "Target",
+                    name: "target",
+                    widget: "select",
+                    default: ["_blank"],
+                    options: [
+                      { label: "Open in new tab", value: "_blank" },
+                      { label: "Open in same window", value: "_self" },
+                    ],
+                    hint: "We recommend opening internal links in the same window and external links in a new tab.",
+                  },
+                ],
+              },
+            ],
+          },
+          {
             label: "Address",
             name: "address",
             file: "src/customisations/address.json",
@@ -181,6 +229,36 @@ export async function GET() {
                 widget: "string",
                 pattern: altTextValidation,
                 hint: `Describe the map for accessibility, up to ${altTextMaxLength} characters.`,
+              },
+            ],
+          },
+          {
+            label: "Announcement",
+            name: "announcement",
+            file: "src/customisations/announcement.json",
+            fields: [
+              {
+                label: "Message",
+                name: "message",
+                widget: "string",
+                required: false,
+                pattern: announcementMessageValidation,
+                hint: `Enter a message, up to ${announcementMessageMaxLength} characters.`,
+              },
+              {
+                label: "Url",
+                name: "url",
+                widget: "string",
+                hint: "Enter the full URL, including http:// or https://",
+                required: false,
+              },
+              {
+                label: "Expiry",
+                name: "expiry",
+                widget: "datetime",
+                hint: `When should the announcement be removed from the website`,
+                required: false,
+                date_format: "YYYY-MM-DD",
               },
             ],
           },
@@ -481,6 +559,34 @@ export async function GET() {
             label: "Success",
             name: "success",
             file: "src/customisations/success.json",
+            fields: [
+              {
+                label: "Title",
+                name: "title",
+                widget: "string",
+                pattern: titleValidation,
+                hint: `Enter a title between ${titleMinLength} and ${titleMaxLength} characters.`,
+              },
+              {
+                label: "Subtitle",
+                name: "subtitle",
+                widget: "string",
+                pattern: subTitleValidation,
+                hint: `Enter a subtitle, up to ${subtitleMaxLength} characters.`,
+              },
+              {
+                label: "Button",
+                name: "button",
+                widget: "string",
+                pattern: buttonValidation,
+                hint: `Text for the button label, ${buttonMaxLength} characters max.`,
+              },
+            ],
+          },
+          {
+            label: "Error",
+            name: "error",
+            file: "src/customisations/error.json",
             fields: [
               {
                 label: "Title",

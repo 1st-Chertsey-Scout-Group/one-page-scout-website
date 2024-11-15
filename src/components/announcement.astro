@@ -1,0 +1,92 @@
+---
+import { X } from "lucide-react";
+
+import { expiry, url, message } from "@/customisations/announcement.json";
+import { slugify } from "@/lib/utils";
+
+const validUrl = url != undefined && url != null && url.trim() != "";
+
+const expiryDate = new Date(expiry);
+const now = new Date();
+
+const showAnnouncement =
+  expiryDate.getTime() > now.getTime() &&
+  message != undefined &&
+  message != null &&
+  message.trim() != "";
+---
+
+{
+  showAnnouncement && (
+    <announcement-banner data-id={slugify(message)} data-expiry={expiry}>
+      <div
+        id="banner"
+        tabindex="-1"
+        class="absolute hidden py-3 px-4 w-full bg-primary"
+      >
+        <div class="max-w-screen-md mx-auto flex items-center justify-center">
+          <a
+            href={validUrl ? url : "#"}
+            target={validUrl ? "_blank" : "_self"}
+            class="flex-1 text-center text-sm font-light text-primary-foreground break-all"
+          >
+            {message}
+          </a>
+          <button>
+            <X className="w-5 h-5 text-primary-foreground" />
+          </button>
+        </div>
+      </div>
+      <div class="py-4" />
+    </announcement-banner>
+  )
+}
+
+<script>
+  class AnnouncementBanner extends HTMLElement {
+    connectedCallback() {
+      const id = this.dataset.id;
+      const expiry = this.dataset.expiry;
+      const keyPrefix = "hide-banner";
+      const storageKey = `${keyPrefix}-${id}-${expiry}`;
+      const expiryDate = new Date(expiry ?? "2000-01-01");
+      const now = new Date();
+
+      const closeButton = this.querySelector("button");
+      const banner = this.querySelector("#banner");
+
+      if (closeButton == null || banner == null) {
+        return;
+      }
+
+      const removeExistingKeys = () => {
+        Object.keys(sessionStorage)
+          .filter((x) => x.startsWith("hide-banner-"))
+          .forEach((x) => sessionStorage.removeItem(x));
+      };
+
+      const hideFn = () => {
+        banner.classList.replace("block", "hidden");
+        removeExistingKeys();
+        sessionStorage.setItem(storageKey, "true");
+      };
+
+      const showFn = () => {
+        banner.classList.replace("hidden", "block");
+      };
+
+      if (
+        sessionStorage.getItem(storageKey) == "true" ||
+        expiryDate.getTime() < now.getTime()
+      ) {
+        hideFn();
+      } else {
+        showFn();
+      }
+
+      closeButton.addEventListener("click", hideFn);
+    }
+  }
+
+  customElements.define("announcement-banner", AnnouncementBanner);
+</script>

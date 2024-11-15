@@ -10,9 +10,12 @@ import FooterNavigation from "@/components/footer/footer-navigation.astro";
 
 import { title } from "@/customisations/hero.json";
 import SectionsList from "@/components/sections/sections-list.astro";
+import Announcement from "@/components/announcement.astro";
 ---
 
 <PageLayout title={title}>
+  <Announcement />
+  
   <HeaderNavigation />
 
   <Hero />

@@ -1,5 +1,5 @@
 ---
-import { SendHorizonal, SendHorizonalIcon } from "lucide-react";
+import { SendHorizonalIcon } from "lucide-react";
 import FormTextBox from "./ui/form-text-box.astro";
 import FormTextArea from "./ui/form-text-area.astro";
 import BlockElement from "./block/block-element.astro";
@@ -27,13 +27,9 @@ import Button from "./ui/button.astro";
   <div class="max-w-screen-md mx-auto">
     <form
       name="contact"
-      data-netlify="true"
-      action="/success"
-      netlify-honeypot="bot-field"
+      action="/functions/enquiry"
       class="space-y-8"
     >
-      <input class="hidden" name="bot-field" />
-
       <FormTextBox
         id="email"
         type="email"
@@ -47,6 +43,8 @@ import Button from "./ui/button.astro";
         label={nameLabel}
         placeholder={namePlaceholder}
       />
+
+      <input class="hidden" name="number" />
 
       <FormTextArea
         id="message"
