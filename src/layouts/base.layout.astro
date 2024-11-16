@@ -13,23 +13,10 @@ interface Props {
 const { title } = Astro.props;
 
 const currentPath = Astro.url.pathname;
+
+import { githubRepo, githubUser } from "@/customisations/site.json";
 ---
 
-<!-- =====================================================================
-If you’re here, you’re clearly prepared to dive into the code! We’re always 
-striving to make this website better – and we’d love your help! 
-
-🌍 Find the Source Code:
-Our website's code is hosted on GitHub! You can explore, download, and contribute at:
-📍 GitHub Repository: https://github.com/1st-Chertsey-Scout-Group/one-page-scout-website
-
-🏆 How You Can Help:
-1. 📝 Report an Issue: Spotted any bugs or things that need improvement? Open an issue and let us know.
-2. 🔧 Contribute Code: Fork the repository, add your improvements, and submit a pull request.
-3. 💡 Share Ideas: Every great adventure starts with a new idea. Join the discussion in our issues section!
-
-🌠 Every bit of effort, big or small, helps us build a better digital Scouting experience for all.
-===================================================================== --><!doctype html>
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
@@ -44,10 +31,27 @@ Our website's code is hosted on GitHub! You can explore, download, and contribut
     <ViewTransitions />
     <style
       define:vars={{
-        "primary": primary,
+        primary: primary,
         "primary-foreground": primaryForeground,
       }}
     ></style>
+    <script define:vars={{ githubRepo, githubUser }}>
+      console.log(`=====================================================================
+If you're here, you're clearly prepared to dive into the code! We're always 
+striving to make this website better - and we'd love your help! 
+
+🌍 Find the Source Code:
+Our website's code is hosted on GitHub! You can explore, download, and contribute at:
+📍 GitHub Repository: https://github.com/${githubUser}/${githubRepo}
+
+🏆 How You Can Help:
+1. 📝 Report an Issue: Spotted any bugs or things that need improvement? Open an issue and let us know.
+2. 🔧 Contribute Code: Fork the repository, add your improvements, and submit a pull request.
+3. 💡 Share Ideas: Every great adventure starts with a new idea. Join the discussion in our issues section!
+
+🌠 Every bit of effort, big or small, helps us build a better digital Scouting experience for all.
+=====================================================================`);
+    </script>
   </head>
   <body>
     <slot />

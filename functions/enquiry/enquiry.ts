@@ -12,6 +12,15 @@ interface ContactForm {
   number?: string;
 }
 
+declare var process: {
+  env: {
+    EMAIL_CONNECTION_STRING: string;
+    EMAIL_RECIPIENTS: string;
+    EMAIL_SENDER: string;
+    DOMAIN: string;
+  };
+};
+
 export const handler: Handler = async (event: HandlerEvent, context) => {
   const form = event.queryStringParameters as unknown as ContactForm;
 
@@ -19,25 +28,36 @@ export const handler: Handler = async (event: HandlerEvent, context) => {
     process.env.EMAIL_CONNECTION_STRING == undefined ||
     process.env.EMAIL_CONNECTION_STRING.trim() == ""
   ) {
-    return errorResponse(event);
+    return errorResponse(process.env.DOMAIN);
   }
 
   if (
     process.env.EMAIL_RECIPIENTS == undefined ||
     process.env.EMAIL_RECIPIENTS.trim() == ""
   ) {
-    return errorResponse(event);
+    return errorResponse(process.env.DOMAIN);
   }
 
   if (
     process.env.EMAIL_SENDER == undefined ||
     process.env.EMAIL_SENDER.trim() == ""
   ) {
-    return errorResponse(event);
+    return errorResponse(process.env.DOMAIN);
+  }
+
+  if (process.env.DOMAIN == undefined || process.env.DOMAIN.trim() == "") {
+    return errorResponse(process.env.DOMAIN);
+  }
+
+  if (
+    event.headers["referer"] == undefined ||
+    !event.headers["referer"].includes(process.env.DOMAIN)
+  ) {
+    return errorResponse(process.env.DOMAIN);
   }
 
   if (!isInvalid(form.number)) {
-    return errorResponse(event);
+    return errorResponse(process.env.DOMAIN);
   }
 
   if (
@@ -45,7 +65,7 @@ export const handler: Handler = async (event: HandlerEvent, context) => {
     isInvalid(form.name) ||
     isInvalid(form.message)
   ) {
-    return errorResponse(event);
+    return errorResponse(process.env.DOMAIN);
   }
 
   const sent = await sendEmail(
@@ -56,17 +76,17 @@ export const handler: Handler = async (event: HandlerEvent, context) => {
   );
 
   if (!sent) {
-    return errorResponse(event);
+    return errorResponse(process.env.DOMAIN);
   }
 
-  return successResponse(event);
+  return successResponse(process.env.DOMAIN);
 };
 
 async function sendEmail(
   form: ContactForm,
   EMAIL_CONNECTION_STRING: string,
   EMAIL_RECIPIENTS: string,
-  EMAIL_SENDER: string
+  EMAIL_SENDER: string,
 ) {
   const client = new EmailClient(EMAIL_CONNECTION_STRING);
 
@@ -103,20 +123,20 @@ async function sendEmail(
   }
 }
 
-function errorResponse(event: HandlerEvent) {
+function errorResponse(domain: string) {
   return {
     statusCode: 302,
     headers: {
-      location: `${event.headers.host}/error`,
+      location: `${domain}/error`,
     },
   };
 }
 
-function successResponse(event: HandlerEvent) {
+function successResponse(domain: string) {
   return {
     statusCode: 302,
     headers: {
-      location: `${event.headers.host}/error`,
+      location: `${domain}/success`,
     },
   };
 }

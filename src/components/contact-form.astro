@@ -14,7 +14,7 @@ import {
   button,
   subtitle,
   title,
-  privacyNotice
+  privacyNotice,
 } from "@/customisations/contact-form.json";
 import Button from "./ui/button.astro";
 ---
@@ -25,11 +25,7 @@ import Button from "./ui/button.astro";
   seperator={{ loading: "lazy" }}
 >
   <div class="max-w-screen-md mx-auto">
-    <form
-      name="contact"
-      action="/functions/enquiry"
-      class="space-y-8"
-    >
+    <form name="contact" action="/functions/enquiry" class="space-y-8">
       <FormTextBox
         id="email"
         type="email"

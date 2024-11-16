@@ -1,7 +1,6 @@
 import { Document } from "yaml";
 
-const user = "1st-Chertsey-Scout-Group";
-const repo = "one-page-scout-website";
+import { githubRepo, githubUser } from "@/customisations/site.json";
 
 export async function GET() {
   const isDev = import.meta.env.DEV;
@@ -60,7 +59,7 @@ export async function GET() {
   } else {
     backend = {
       name: "github",
-      repo: `${user}/${repo}`,
+      repo: `${githubUser}/${githubRepo}`,
     };
   }
 
@@ -552,6 +551,16 @@ export async function GET() {
                 widget: "string",
                 pattern: numberValidation,
                 hint: "Enter the official charity registration number.",
+              },
+              {
+                label: "Github User",
+                name: "githubUser",
+                widget: "string",
+              },
+              {
+                label: "Github Repo",
+                name: "githubRepo",
+                widget: "string",
               },
             ],
           },
